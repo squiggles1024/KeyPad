@@ -109,3 +109,14 @@ void JoystickSetFunction(Joystick_Handle_t* Joystick, JoystickState_t Position, 
 	}
 
 }
+
+/**************************************//**************************************
+ *@Brief: Changes a joystick's mode
+ *@Params: Joystick handle to modify, Desired Mode
+ *@Return: None
+ *@Precondition: None
+ *@Postcondition: None
+ **************************************//**************************************/
+void JoystickSetMode(Joystick_Handle_t* Joystick, JoystickMode_t NewMode){
+    Joystick->Mode = NewMode;
+}

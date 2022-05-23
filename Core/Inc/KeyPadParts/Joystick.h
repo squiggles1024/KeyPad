@@ -75,6 +75,7 @@ typedef struct{
 void JoystickInit(Joystick_Init_Struct_t Settings, Joystick_Handle_t *Joystick, Joystick_IO_Drv_t IO);
 JoystickStatus_t JoystickRead(Joystick_Handle_t *Joystick);
 void JoystickSetFunction(Joystick_Handle_t* Joystick, JoystickState_t Position, JoystickDirectionFunction_t NewFunction);
+void JoystickSetMode(Joystick_Handle_t* Joystick, JoystickMode_t NewMode);
 
 
 #endif /* INC_KEYPADPARTS_JOYSTICK_H_ */
