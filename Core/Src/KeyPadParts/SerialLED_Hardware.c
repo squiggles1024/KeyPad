@@ -24,7 +24,7 @@ static uint16_t LED_DMA_BUFFER[LED_DMA_BUFFER_LENGTH];
 static LED_IO_Initialized_t initialize_status = LED_uninitialized;
 
 //static const uint8_t TIM_PERIOD = 119;     //1.25uS with 96MHz clock
-static const uint8_t ZERO_DUTY_CYCLE = 28; //.3uS
+static const uint8_t ZERO_DUTY_CYCLE = 29; //.3uS
 static const uint8_t ONE_DUTY_CYCLE = 58;  //.6uS
 static const uint8_t RESET_DUTY_CYCLE = 0;
 
