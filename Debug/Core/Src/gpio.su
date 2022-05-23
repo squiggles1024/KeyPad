@@ -1,0 +1,4 @@
+../Core/Src/gpio.c:42:6:MX_GPIO_Init	24	static
+../Core/Src/gpio.c:53:6:I2C_GPIO_Init	16	static
+../Core/Src/gpio.c:59:6:ADC_GPIO_Init	16	static
+../Core/Src/gpio.c:64:6:TIM3_GPIO_Init	16	static

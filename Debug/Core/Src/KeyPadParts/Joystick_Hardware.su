@@ -1,0 +1,3 @@
+../Core/Src/KeyPadParts/Joystick_Hardware.c:34:13:JoystickIOInit	8	static
+../Core/Src/KeyPadParts/Joystick_Hardware.c:48:13:JoystickIODeInit	8	static
+../Core/Src/KeyPadParts/Joystick_Hardware.c:61:24:JoystickIORead	32	static

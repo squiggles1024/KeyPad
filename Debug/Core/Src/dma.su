@@ -1,0 +1,4 @@
+../Core/Src/dma.c:39:6:MX_DMA_Init	16	static
+../Core/Src/dma.c:60:6:I2C_DMA_Init	16	static
+../Core/Src/dma.c:65:6:ADC_DMA_Init	16	static
+../Core/Src/dma.c:71:6:TIM_DMA_Init	16	static
