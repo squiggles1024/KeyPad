@@ -186,7 +186,7 @@ void InitButtons(){
 void InitJoystick(){
     Joystick_Init_Struct_t Settings = {
     		.DeadZone = 2000,
-			.Mode = Joystick8Way
+			.Mode = Joystick4Way
     };
     JoystickInit(Settings, &Joystick, JoystickIO_Driver);
 }
