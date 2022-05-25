@@ -42,6 +42,8 @@ void MX_GPIO_Init(void);
 void I2C_GPIO_Init(void);
 void ADC_GPIO_Init(void);
 void TIM3_GPIO_Init(void);
+void ILI9341_GPIO_Init(void);
+void ILI9341_GPIO_DeInit(void);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

@@ -42,10 +42,22 @@
 void MX_GPIO_Init(void)
 {
 
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, SPI1_CSN_Pin|DCRS_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pins : PBPin PBPin */
+  GPIO_InitStruct.Pin = SPI1_CSN_Pin|DCRS_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 }
 
@@ -63,5 +75,25 @@ void ADC_GPIO_Init(void){
 
 void TIM3_GPIO_Init(void){
   __HAL_RCC_GPIOB_CLK_ENABLE();
+}
+
+void ILI9341_GPIO_Init(void){
+	  __HAL_RCC_GPIOA_CLK_ENABLE();
+	  __HAL_RCC_GPIOB_CLK_ENABLE();
+	  GPIO_InitTypeDef GPIO_InitStruct = {0};
+	  /*Configure GPIO pin Output Level */
+	  HAL_GPIO_WritePin(GPIOB, SPI1_CSN_Pin|DCRS_Pin, GPIO_PIN_SET);
+
+	  /*Configure GPIO pins : PBPin PBPin */
+	  GPIO_InitStruct.Pin = SPI1_CSN_Pin|DCRS_Pin;
+	  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	  GPIO_InitStruct.Pull = GPIO_NOPULL;
+	  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+	  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+}
+
+void ILI9341_GPIO_DeInit(void){
+	HAL_GPIO_DeInit(GPIOB, SPI1_CSN_Pin|DCRS_Pin);
 }
 /* USER CODE END 2 */
