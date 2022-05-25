@@ -1,3 +1,4 @@
 ../Core/Src/KeyPadParts/Joystick.c:22:6:JoystickInit	8	static
 ../Core/Src/KeyPadParts/Joystick.c:52:18:JoystickRead	24	static
 ../Core/Src/KeyPadParts/Joystick.c:80:6:JoystickSetFunction	24	static
+../Core/Src/KeyPadParts/Joystick.c:120:6:JoystickSetMode	16	static

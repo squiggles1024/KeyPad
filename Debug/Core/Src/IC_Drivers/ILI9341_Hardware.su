@@ -1,0 +1,7 @@
+../Core/Src/IC_Drivers/ILI9341_Hardware.c:9:13:ILI9341_IO_Init	8	static
+../Core/Src/IC_Drivers/ILI9341_Hardware.c:14:13:ILI9341_IO_DeInit	8	static
+../Core/Src/IC_Drivers/ILI9341_Hardware.c:18:25:ILI9341_IO_ioctl	16	static
+../Core/Src/IC_Drivers/ILI9341_Hardware.c:31:25:ILI9341_IO_WriteReg	32	static
+../Core/Src/IC_Drivers/ILI9341_Hardware.c:69:25:ILI9341_IO_ReadReg	24	static
+../Core/Src/IC_Drivers/ILI9341_Hardware.c:86:13:ILI9341_CSState	16	static
+../Core/Src/IC_Drivers/ILI9341_Hardware.c:94:13:ILI9341_DCRSState	16	static

@@ -24,6 +24,7 @@ SUBDIRS := \
 Core/Src/IC_Drivers \
 Core/Src/KeyPadParts \
 Core/Src \
+Core/Src/art_assets \
 Core/Startup \
 Drivers/STM32F4xx_HAL_Driver/Src \
 Middlewares/ST/STM32_USB_Device_Library/Class/CustomHID/Src \
