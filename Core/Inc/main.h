@@ -61,6 +61,10 @@ void Error_Handler(void);
 #define ADC_VX_GPIO_Port GPIOA
 #define ADC_VY_Pin GPIO_PIN_4
 #define ADC_VY_GPIO_Port GPIOA
+#define SPI1_CSN_Pin GPIO_PIN_0
+#define SPI1_CSN_GPIO_Port GPIOB
+#define DCRS_Pin GPIO_PIN_1
+#define DCRS_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

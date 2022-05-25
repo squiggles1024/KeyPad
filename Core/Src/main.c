@@ -32,6 +32,8 @@
 #include "Button.h"
 #include "Joystick.h"
 #include "SerialLED.h"
+#include "ILI9341.h"
+#include "art.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -57,9 +59,11 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
+
 void InitButtons();
 void InitJoystick();
 void InitLEDs();
+void InitScreen();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -67,6 +71,7 @@ void InitLEDs();
 Button_Handle_t Buttons[64];
 Joystick_Handle_t Joystick;
 SerialLED_Handle_t LED[4];
+ILI9341_Handle_t LCD;
 /* USER CODE END 0 */
 
 /**
@@ -97,14 +102,14 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_SPI1_Init();
   MX_USART1_UART_Init();
   MX_USB_DEVICE_Init();
+  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
   InitButtons();
   InitJoystick();
   InitLEDs();
-  //HAL_ADC_Start_DMA(&hadc1, (uint32_t*)AdcBuffer.raw,2);
+  InitScreen();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -201,6 +206,85 @@ void InitLEDs(){
 		LED_Settings.address = i;
 		SerialLEDInit(LED_Settings,&LED[i],LED_Drv);
 	}
+}
+
+void InitScreen(){
+	ILI9341_Init_Struct_t Settings = {
+			.Orientation = XYExchangeXYMirror,
+			.ScreenHeight = 240,
+			.ScreenWidth = 320
+	};
+	ILI9341_Init(Settings, &LCD, ILI931_IO);
+    ILI9341_Color_t Color = {
+    		.red = 0,
+    		.green = 0,
+			.blue = 0
+    };
+    ILI9341_FillSceen(&LCD, Color);
+    ILI9341_Image_t Image = {
+    		.Height = 62,
+			.Width = 62,
+			.ImageLength = 62*62*3,
+			.ImageData = char_image
+    };
+    LCD.Cursor.X = 40 - Image.Width / 2;
+    LCD.Cursor.Y = 40 - Image.Height / 2;
+    ILI9341_DisplayImage(&LCD, Image);
+
+    Image.ImageData = bag_image;
+    LCD.Cursor.X = 120 - Image.Width / 2;
+    LCD.Cursor.Y = 40 - Image.Height / 2;
+    ILI9341_DisplayImage(&LCD, Image);
+
+    Image.ImageData = mounts_image;
+    LCD.Cursor.X = 200 - Image.Width / 2;
+    LCD.Cursor.Y = 40 - Image.Height / 2;
+    ILI9341_DisplayImage(&LCD, Image);
+
+    Image.ImageData = LFD_image;
+    LCD.Cursor.X = 280 - Image.Width / 2;
+    LCD.Cursor.Y = 40 - Image.Height / 2;
+    ILI9341_DisplayImage(&LCD, Image);
+
+    Image.ImageData = spells_image;
+    LCD.Cursor.X = 40 - Image.Width / 2;
+    LCD.Cursor.Y = 120 - Image.Height / 2;
+    ILI9341_DisplayImage(&LCD, Image);
+
+    Image.ImageData = talents_image;
+    LCD.Cursor.X = 120 - Image.Width / 2;
+    LCD.Cursor.Y = 120 - Image.Height / 2;
+    ILI9341_DisplayImage(&LCD, Image);
+
+    Image.ImageData = social_image;
+    LCD.Cursor.X = 200 - Image.Width / 2;
+    LCD.Cursor.Y = 120 - Image.Height / 2;
+    ILI9341_DisplayImage(&LCD, Image);
+
+    Image.ImageData = guild_image;
+    LCD.Cursor.X = 280 - Image.Width / 2;
+    LCD.Cursor.Y = 120 - Image.Height / 2;
+    ILI9341_DisplayImage(&LCD, Image);
+
+    Image.ImageData = map_image;
+    LCD.Cursor.X = 40 - Image.Width / 2;
+    LCD.Cursor.Y = 200 - Image.Height / 2;
+    ILI9341_DisplayImage(&LCD, Image);
+
+    Image.ImageData = achievements_image;
+    LCD.Cursor.X = 120 - Image.Width / 2;
+    LCD.Cursor.Y = 200 - Image.Height / 2;
+    ILI9341_DisplayImage(&LCD, Image);
+
+    Image.ImageData = adventureguide_image;
+    LCD.Cursor.X = 200 - Image.Width / 2;
+    LCD.Cursor.Y = 200 - Image.Height / 2;
+    ILI9341_DisplayImage(&LCD, Image);
+
+    Image.ImageData = menu_image;
+    LCD.Cursor.X = 280 - Image.Width / 2;
+    LCD.Cursor.Y = 200 - Image.Height / 2;
+    ILI9341_DisplayImage(&LCD, Image);
 }
 /* USER CODE END 4 */
 
