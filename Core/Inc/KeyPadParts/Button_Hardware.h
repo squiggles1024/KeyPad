@@ -43,4 +43,9 @@ typedef struct{
 extern const Button_IO_Drv_t ButtonIO_Driver;
 extern MCP23017_Handle_t Expander[4];
 
+/**************************************//**************************************//**************************************
+ * Public Functions
+ **************************************//**************************************//**************************************/
+void ButtonIRQCallback();
+
 #endif /* INC_BUTTON_HARDWARE_H_ */

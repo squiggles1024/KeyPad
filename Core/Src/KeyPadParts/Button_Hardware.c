@@ -10,7 +10,6 @@
 #include "Button_Hardware.h"
 #include "MCP23017.h"
 #include "i2c.h"
-
 /**************************************//**************************************//**************************************
  * Enums
  **************************************//**************************************//**************************************/
@@ -98,10 +97,12 @@ static ButtonState_t Button_IO_Read(uint8_t ButtonNumber){
  *@Precondition: Button IO should be initialized.
  *@Postcondition: MCP23017 Pin states will be updated.
  **************************************//**************************************/
-void HAL_I2C_MemRxCpltCallback(I2C_HandleTypeDef *hi2c){
+void ButtonIRQCallback(){
+//void HAL_I2C_MemRxCpltCallback(I2C_HandleTypeDef *hi2c){
 	static uint8_t counter = 1;
 	MCP23017_ReadPins(&Expander[counter % NUMBER_OF_IO_EXPANDERS]);
 	counter++;
+
 }
 /**************************************//**************************************//**************************************
  * Public Variables
