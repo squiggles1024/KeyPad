@@ -34,6 +34,7 @@
 #include "SerialLED.h"
 #include "ILI9341.h"
 #include "art.h"
+#include "TouchButton.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -64,6 +65,8 @@ void InitButtons();
 void InitJoystick();
 void InitLEDs();
 void InitScreen();
+void InitTouchButtons();
+//void InitTouch();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -72,6 +75,8 @@ Button_Handle_t Buttons[64];
 Joystick_Handle_t Joystick;
 SerialLED_Handle_t LED[4];
 ILI9341_Handle_t LCD;
+TouchButton_Handle_t TouchButton[12];
+//FT6206_Handle_t TouchScreen;
 /* USER CODE END 0 */
 
 /**
@@ -101,27 +106,30 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_USART1_UART_Init();
-  MX_USB_DEVICE_Init();
-  MX_SPI1_Init();
+
   /* USER CODE BEGIN 2 */
+  //MX_GPIO_Init();
+  //MX_USART1_UART_Init();
+  MX_USB_DEVICE_Init();
   InitButtons();
   InitJoystick();
   InitLEDs();
   InitScreen();
+  InitTouchButtons();
+  //InitTouch();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  uint8_t counter = 0;
   while (1)
   {
-	 for(uint8_t i = 0; i < PINS_PER_EXPANDER; i++){
-		 ButtonRead(&Buttons[((counter + NUMBER_OF_IO_EXPANDERS-1) % NUMBER_OF_IO_EXPANDERS)*PINS_PER_EXPANDER + i]);
+	 for(uint8_t i = 0; i < 64; i++){
+		 ButtonRead(&Buttons[i]);
+	 }
+	 for(uint8_t i = 0; i < 12; i++){
+		 TouchButtonRead(&TouchButton[i]);
 	 }
 	JoystickRead(&Joystick);
-    counter++;
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -285,6 +293,75 @@ void InitScreen(){
     LCD.Cursor.X = 280 - Image.Width / 2;
     LCD.Cursor.Y = 200 - Image.Height / 2;
     ILI9341_DisplayImage(&LCD, Image);
+}
+
+//void InitTouch(){
+    //FT6206_Init(&TouchScreen, FT6202_Drv);
+//}
+void InitTouchButtons(){
+	TouchButton_Init_Struct_t Settings = {
+			.TopLeftBound = {
+					.X_Position = 40 - 31,
+					.Y_Position = 60 - 31
+			},
+			.BottomRightBound = {
+					.X_Position = 40 + 31,
+					.Y_Position = 60 + 31
+			},
+			.KeyFunction = 0,
+			.ModKeyFunction = 0,
+			.WheelFunction = 0,
+			.MouseFunction = 0
+	};
+	TouchButtonInit(Settings, &TouchButton[0], TouchButton_IO_Driver);
+
+	Settings.TopLeftBound.X_Position = 120 - 31;
+	Settings.BottomRightBound.X_Position = 120 + 31;
+	TouchButtonInit(Settings, &TouchButton[1], TouchButton_IO_Driver);
+
+	Settings.TopLeftBound.X_Position = 200 - 31;
+	Settings.BottomRightBound.X_Position = 200 + 31;
+	TouchButtonInit(Settings, &TouchButton[2], TouchButton_IO_Driver);
+
+	Settings.TopLeftBound.X_Position = 280 - 31;
+	Settings.BottomRightBound.X_Position = 280 + 31;
+	TouchButtonInit(Settings, &TouchButton[3], TouchButton_IO_Driver);
+
+	Settings.TopLeftBound.X_Position = 40 - 31;
+	Settings.BottomRightBound.X_Position = 40 + 31;
+	Settings.TopLeftBound.Y_Position = 120 - 31;
+	Settings.BottomRightBound.Y_Position = 120 + 31;
+	TouchButtonInit(Settings, &TouchButton[4], TouchButton_IO_Driver);
+
+	Settings.TopLeftBound.X_Position = 120 - 31;
+	Settings.BottomRightBound.X_Position = 120 + 31;
+	TouchButtonInit(Settings, &TouchButton[5], TouchButton_IO_Driver);
+
+	Settings.TopLeftBound.X_Position = 200 - 31;
+	Settings.BottomRightBound.X_Position = 200 + 31;
+	TouchButtonInit(Settings, &TouchButton[6], TouchButton_IO_Driver);
+
+	Settings.TopLeftBound.X_Position = 280 - 31;
+	Settings.BottomRightBound.X_Position = 280 + 31;
+	TouchButtonInit(Settings, &TouchButton[7], TouchButton_IO_Driver);
+
+	Settings.TopLeftBound.X_Position = 40 - 31;
+	Settings.BottomRightBound.X_Position = 40 + 31;
+	Settings.TopLeftBound.Y_Position = 180 - 31;
+	Settings.BottomRightBound.Y_Position = 180 + 31;
+	TouchButtonInit(Settings, &TouchButton[8], TouchButton_IO_Driver);
+
+	Settings.TopLeftBound.X_Position = 120 - 31;
+	Settings.BottomRightBound.X_Position = 120 + 31;
+	TouchButtonInit(Settings, &TouchButton[9], TouchButton_IO_Driver);
+
+	Settings.TopLeftBound.X_Position = 200 - 31;
+	Settings.BottomRightBound.X_Position = 200 + 31;
+	TouchButtonInit(Settings, &TouchButton[10], TouchButton_IO_Driver);
+
+	Settings.TopLeftBound.X_Position = 280 - 31;
+	Settings.BottomRightBound.X_Position = 280 + 31;
+	TouchButtonInit(Settings, &TouchButton[11], TouchButton_IO_Driver);
 }
 /* USER CODE END 4 */
 
