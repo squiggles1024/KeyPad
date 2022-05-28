@@ -32,7 +32,7 @@ static ILI9341_Status_t ILI9341_IO_WriteReg(uint8_t reg, uint8_t* pdata, uint32_
 	ILI9341_CSState(GPIO_PIN_RESET);
 	if(reg != 0xFF){
 		ILI9341_DCRSState(GPIO_PIN_RESET);
-		if(HAL_SPI_Transmit(&hspi1, &reg, 1, 10) != HAL_OK){
+		if(HAL_SPI_Transmit(&hspi1, &reg, 1, 1000) != HAL_OK){
 			return ILI9341_Err;
 		}
 	}
@@ -44,15 +44,15 @@ static ILI9341_Status_t ILI9341_IO_WriteReg(uint8_t reg, uint8_t* pdata, uint32_
 		}
 	}else if(length != 0 && reg == 0xFF){
         for(uint32_t i = 0; i < length; i = i + 3){
-    		if(HAL_SPI_Transmit(&hspi1, pdata, 1, 10) != HAL_OK){
+    		if(HAL_SPI_Transmit(&hspi1, pdata, 1, 1000) != HAL_OK){
     			return ILI9341_Err;
     		}
 
-    		if(HAL_SPI_Transmit(&hspi1, pdata + 1, 1, 10) != HAL_OK){
+    		if(HAL_SPI_Transmit(&hspi1, pdata + 1, 1, 1000) != HAL_OK){
     			return ILI9341_Err;
     		}
 
-    		if(HAL_SPI_Transmit(&hspi1, pdata + 2, 1, 10) != HAL_OK){
+    		if(HAL_SPI_Transmit(&hspi1, pdata + 2, 1, 1000) != HAL_OK){
     			return ILI9341_Err;
     		}
     		if(i == length - 10000){
@@ -69,13 +69,13 @@ static ILI9341_Status_t ILI9341_IO_WriteReg(uint8_t reg, uint8_t* pdata, uint32_
 static ILI9341_Status_t ILI9341_IO_ReadReg(uint8_t reg, uint8_t* pdata, uint32_t length){
 	ILI9341_CSState(GPIO_PIN_RESET);
 	ILI9341_DCRSState(GPIO_PIN_RESET);
-	if(HAL_SPI_Transmit(&hspi1, &reg, 1, 10) != HAL_OK){
+	if(HAL_SPI_Transmit(&hspi1, &reg, 1, 1000) != HAL_OK){
         return ILI9341_Err;
 	}
 	ILI9341_DCRSState(GPIO_PIN_SET);
 
 	if(length != 0){
-		if(HAL_SPI_Receive(&hspi1, pdata, length, 10) != HAL_OK){
+		if(HAL_SPI_Receive(&hspi1, pdata, length, 1000) != HAL_OK){
 			return ILI9341_Err;
 		}
 	}

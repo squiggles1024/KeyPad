@@ -182,6 +182,7 @@ void ILI9341_Reset(ILI9341_Handle_t *Dev){
 /************************************************
 * Fix Later: Change screen height/width based upon orientation
 ************************************************/
+/*
 static void ILI9341_SetScreenOrientation(ILI9341_Handle_t *Dev, ILI9341_ScreenOrientation_t Orientation){
 	Dev->IO_Drv.write(ILI9341_MADCTL, &Orientation,1);
     switch(Orientation){
@@ -223,7 +224,7 @@ static void ILI9341_SetScreenOrientation(ILI9341_Handle_t *Dev, ILI9341_ScreenOr
             break;
     }
 }
-
+*/
 void ILI9341_DrawPixel(ILI9341_Handle_t *Dev, ILI9341_Color_t Color, ILI9341_Coordinate_t Position){
     ILI9341_SetCoordinates(Dev,Position,Position);
     Dev->IO_Drv.write(ILI9341_RAMWR,(uint8_t*)&Color,3);
@@ -297,13 +298,12 @@ static ImageDimensionValidity_t ValidateCoordinates(ILI9341_Handle_t *Dev, ILI93
     return DimensionsValid;
 }
 
-void ILI9341_DisplayImage(ILI9341_Handle_t *Dev, ILI9341_Image_t Image){
+void ILI9341_DisplayImage(ILI9341_Handle_t *Dev, const ILI9341_Image_t Image){
     ILI9341_Coordinate_t CoordinateStart = {.X = Dev->Cursor.X, .Y = Dev->Cursor.Y};
     ILI9341_Coordinate_t CoordinateEnd = {.X = CoordinateStart.X + Image.Width - 1, .Y = CoordinateStart.Y + Image.Height - 1};
     ILI9341_SetCoordinates(Dev,CoordinateStart,CoordinateEnd);
-    uint8_t dummy;
     //Dev->IO_Drv.write(ILI9341_RAMWR,(uint8_t*)&dummy,0);
-    Dev->IO_Drv.write(ILI9341_RAMWR, Image.ImageData, Image.ImageLength);
+    Dev->IO_Drv.write(ILI9341_RAMWR, (uint8_t*)Image.ImageData, Image.ImageLength);
 }
 
 

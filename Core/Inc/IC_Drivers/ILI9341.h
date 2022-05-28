@@ -158,7 +158,7 @@ typedef struct{
     uint32_t Width;
     uint32_t Height;
     uint32_t ImageLength;
-    uint8_t *ImageData;
+    const uint8_t *ImageData;
 }ILI9341_Image_t;
 
 typedef struct __attribute__((packed)){
@@ -192,7 +192,7 @@ void ILI9341_Reset(ILI9341_Handle_t *Dev);
 
 void ILI9341_DrawPixel(ILI9341_Handle_t *Dev, ILI9341_Color_t Color, ILI9341_Coordinate_t Position);
 //void ILI9341_PrintText(uint8_t *text, sFONT font, ILI9341_Color_t Color);
-void ILI9341_DisplayImage(ILI9341_Handle_t *Dev, ILI9341_Image_t Image);
+void ILI9341_DisplayImage(ILI9341_Handle_t *Dev, const ILI9341_Image_t Image);
 void ILI9341_DrawRectangle(ILI9341_Handle_t *Dev, uint16_t width, uint16_t height, ILI9341_Coordinate_t Middle, ILI9341_Color_t Color);
 void ILI9341_FillSceen(ILI9341_Handle_t *Dev, ILI9341_Color_t Color);
 void ILI9341_ImageOpen(const uint8_t *BitmapFile, ILI9341_Image_t *Image);
