@@ -11,7 +11,9 @@ C_SRCS += \
 ../Core/Src/KeyPadParts/Joystick_Hardware.c \
 ../Core/Src/KeyPadParts/KeyFunctions.c \
 ../Core/Src/KeyPadParts/SerialLED.c \
-../Core/Src/KeyPadParts/SerialLED_Hardware.c 
+../Core/Src/KeyPadParts/SerialLED_Hardware.c \
+../Core/Src/KeyPadParts/TouchButton.c \
+../Core/Src/KeyPadParts/TouchButton_Hardware.c 
 
 OBJS += \
 ./Core/Src/KeyPadParts/Button.o \
@@ -20,7 +22,9 @@ OBJS += \
 ./Core/Src/KeyPadParts/Joystick_Hardware.o \
 ./Core/Src/KeyPadParts/KeyFunctions.o \
 ./Core/Src/KeyPadParts/SerialLED.o \
-./Core/Src/KeyPadParts/SerialLED_Hardware.o 
+./Core/Src/KeyPadParts/SerialLED_Hardware.o \
+./Core/Src/KeyPadParts/TouchButton.o \
+./Core/Src/KeyPadParts/TouchButton_Hardware.o 
 
 C_DEPS += \
 ./Core/Src/KeyPadParts/Button.d \
@@ -29,7 +33,9 @@ C_DEPS += \
 ./Core/Src/KeyPadParts/Joystick_Hardware.d \
 ./Core/Src/KeyPadParts/KeyFunctions.d \
 ./Core/Src/KeyPadParts/SerialLED.d \
-./Core/Src/KeyPadParts/SerialLED_Hardware.d 
+./Core/Src/KeyPadParts/SerialLED_Hardware.d \
+./Core/Src/KeyPadParts/TouchButton.d \
+./Core/Src/KeyPadParts/TouchButton_Hardware.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -39,7 +45,7 @@ Core/Src/KeyPadParts/%.o Core/Src/KeyPadParts/%.su: ../Core/Src/KeyPadParts/%.c 
 clean: clean-Core-2f-Src-2f-KeyPadParts
 
 clean-Core-2f-Src-2f-KeyPadParts:
-	-$(RM) ./Core/Src/KeyPadParts/Button.d ./Core/Src/KeyPadParts/Button.o ./Core/Src/KeyPadParts/Button.su ./Core/Src/KeyPadParts/Button_Hardware.d ./Core/Src/KeyPadParts/Button_Hardware.o ./Core/Src/KeyPadParts/Button_Hardware.su ./Core/Src/KeyPadParts/Joystick.d ./Core/Src/KeyPadParts/Joystick.o ./Core/Src/KeyPadParts/Joystick.su ./Core/Src/KeyPadParts/Joystick_Hardware.d ./Core/Src/KeyPadParts/Joystick_Hardware.o ./Core/Src/KeyPadParts/Joystick_Hardware.su ./Core/Src/KeyPadParts/KeyFunctions.d ./Core/Src/KeyPadParts/KeyFunctions.o ./Core/Src/KeyPadParts/KeyFunctions.su ./Core/Src/KeyPadParts/SerialLED.d ./Core/Src/KeyPadParts/SerialLED.o ./Core/Src/KeyPadParts/SerialLED.su ./Core/Src/KeyPadParts/SerialLED_Hardware.d ./Core/Src/KeyPadParts/SerialLED_Hardware.o ./Core/Src/KeyPadParts/SerialLED_Hardware.su
+	-$(RM) ./Core/Src/KeyPadParts/Button.d ./Core/Src/KeyPadParts/Button.o ./Core/Src/KeyPadParts/Button.su ./Core/Src/KeyPadParts/Button_Hardware.d ./Core/Src/KeyPadParts/Button_Hardware.o ./Core/Src/KeyPadParts/Button_Hardware.su ./Core/Src/KeyPadParts/Joystick.d ./Core/Src/KeyPadParts/Joystick.o ./Core/Src/KeyPadParts/Joystick.su ./Core/Src/KeyPadParts/Joystick_Hardware.d ./Core/Src/KeyPadParts/Joystick_Hardware.o ./Core/Src/KeyPadParts/Joystick_Hardware.su ./Core/Src/KeyPadParts/KeyFunctions.d ./Core/Src/KeyPadParts/KeyFunctions.o ./Core/Src/KeyPadParts/KeyFunctions.su ./Core/Src/KeyPadParts/SerialLED.d ./Core/Src/KeyPadParts/SerialLED.o ./Core/Src/KeyPadParts/SerialLED.su ./Core/Src/KeyPadParts/SerialLED_Hardware.d ./Core/Src/KeyPadParts/SerialLED_Hardware.o ./Core/Src/KeyPadParts/SerialLED_Hardware.su ./Core/Src/KeyPadParts/TouchButton.d ./Core/Src/KeyPadParts/TouchButton.o ./Core/Src/KeyPadParts/TouchButton.su ./Core/Src/KeyPadParts/TouchButton_Hardware.d ./Core/Src/KeyPadParts/TouchButton_Hardware.o ./Core/Src/KeyPadParts/TouchButton_Hardware.su
 
 .PHONY: clean-Core-2f-Src-2f-KeyPadParts
 

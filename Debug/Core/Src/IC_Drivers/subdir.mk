@@ -5,18 +5,24 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Core/Src/IC_Drivers/FT6206.c \
+../Core/Src/IC_Drivers/FT6206_Hardware.c \
 ../Core/Src/IC_Drivers/ILI9341.c \
 ../Core/Src/IC_Drivers/ILI9341_Hardware.c \
 ../Core/Src/IC_Drivers/MCP23017.c \
 ../Core/Src/IC_Drivers/MCP23017_Hardware.c 
 
 OBJS += \
+./Core/Src/IC_Drivers/FT6206.o \
+./Core/Src/IC_Drivers/FT6206_Hardware.o \
 ./Core/Src/IC_Drivers/ILI9341.o \
 ./Core/Src/IC_Drivers/ILI9341_Hardware.o \
 ./Core/Src/IC_Drivers/MCP23017.o \
 ./Core/Src/IC_Drivers/MCP23017_Hardware.o 
 
 C_DEPS += \
+./Core/Src/IC_Drivers/FT6206.d \
+./Core/Src/IC_Drivers/FT6206_Hardware.d \
 ./Core/Src/IC_Drivers/ILI9341.d \
 ./Core/Src/IC_Drivers/ILI9341_Hardware.d \
 ./Core/Src/IC_Drivers/MCP23017.d \
@@ -30,7 +36,7 @@ Core/Src/IC_Drivers/%.o Core/Src/IC_Drivers/%.su: ../Core/Src/IC_Drivers/%.c Cor
 clean: clean-Core-2f-Src-2f-IC_Drivers
 
 clean-Core-2f-Src-2f-IC_Drivers:
-	-$(RM) ./Core/Src/IC_Drivers/ILI9341.d ./Core/Src/IC_Drivers/ILI9341.o ./Core/Src/IC_Drivers/ILI9341.su ./Core/Src/IC_Drivers/ILI9341_Hardware.d ./Core/Src/IC_Drivers/ILI9341_Hardware.o ./Core/Src/IC_Drivers/ILI9341_Hardware.su ./Core/Src/IC_Drivers/MCP23017.d ./Core/Src/IC_Drivers/MCP23017.o ./Core/Src/IC_Drivers/MCP23017.su ./Core/Src/IC_Drivers/MCP23017_Hardware.d ./Core/Src/IC_Drivers/MCP23017_Hardware.o ./Core/Src/IC_Drivers/MCP23017_Hardware.su
+	-$(RM) ./Core/Src/IC_Drivers/FT6206.d ./Core/Src/IC_Drivers/FT6206.o ./Core/Src/IC_Drivers/FT6206.su ./Core/Src/IC_Drivers/FT6206_Hardware.d ./Core/Src/IC_Drivers/FT6206_Hardware.o ./Core/Src/IC_Drivers/FT6206_Hardware.su ./Core/Src/IC_Drivers/ILI9341.d ./Core/Src/IC_Drivers/ILI9341.o ./Core/Src/IC_Drivers/ILI9341.su ./Core/Src/IC_Drivers/ILI9341_Hardware.d ./Core/Src/IC_Drivers/ILI9341_Hardware.o ./Core/Src/IC_Drivers/ILI9341_Hardware.su ./Core/Src/IC_Drivers/MCP23017.d ./Core/Src/IC_Drivers/MCP23017.o ./Core/Src/IC_Drivers/MCP23017.su ./Core/Src/IC_Drivers/MCP23017_Hardware.d ./Core/Src/IC_Drivers/MCP23017_Hardware.o ./Core/Src/IC_Drivers/MCP23017_Hardware.su
 
 .PHONY: clean-Core-2f-Src-2f-IC_Drivers
 

@@ -1,5 +1,7 @@
-Core/Src/stm32f4xx_it.o: ../Core/Src/stm32f4xx_it.c ../Core/Inc/main.h \
- ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
+Core/Src/IC_Drivers/FT6206_Hardware.o: \
+ ../Core/Src/IC_Drivers/FT6206_Hardware.c \
+ ../Core/Inc/IC_Drivers/FT6206_Hardware.h ../Core/Inc/i2c.h \
+ ../Core/Inc/main.h ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
@@ -36,12 +38,9 @@ Core/Src/stm32f4xx_it.o: ../Core/Src/stm32f4xx_it.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h \
- ../Core/Inc/stm32f4xx_it.h ../Core/Inc/KeyPadParts/Button_Hardware.h \
- ../Core/Inc/IC_Drivers/MCP23017.h \
- ../Core/Inc/IC_Drivers/MCP23017_Hardware.h \
- ../Core/Inc/KeyPadParts/TouchButton_Hardware.h \
- ../Core/Inc/IC_Drivers/FT6206.h ../Core/Inc/IC_Drivers/FT6206_Hardware.h \
- ../Core/Inc/i2c.h ../Core/Inc/main.h
+ ../Core/Inc/gpio.h ../Core/Inc/dma.h
+../Core/Inc/IC_Drivers/FT6206_Hardware.h:
+../Core/Inc/i2c.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -80,12 +79,5 @@ Core/Src/stm32f4xx_it.o: ../Core/Src/stm32f4xx_it.c ../Core/Inc/main.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h:
-../Core/Inc/stm32f4xx_it.h:
-../Core/Inc/KeyPadParts/Button_Hardware.h:
-../Core/Inc/IC_Drivers/MCP23017.h:
-../Core/Inc/IC_Drivers/MCP23017_Hardware.h:
-../Core/Inc/KeyPadParts/TouchButton_Hardware.h:
-../Core/Inc/IC_Drivers/FT6206.h:
-../Core/Inc/IC_Drivers/FT6206_Hardware.h:
-../Core/Inc/i2c.h:
-../Core/Inc/main.h:
+../Core/Inc/gpio.h:
+../Core/Inc/dma.h:
