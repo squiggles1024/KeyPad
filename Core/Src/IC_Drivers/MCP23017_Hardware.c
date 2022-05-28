@@ -31,7 +31,7 @@ static const uint8_t MCP23017_Address4 = 0x46;
  *@Postcondition: GPIO B Clk will be enabled and I2C1 Peripheral will be initialized
  **************************************//**************************************/
 static void MCP23017_IO_Init(){
-	I2C_DMA_Init();
+	I2C1_DMA_Init();
 	I2C_GPIO_Init();
 	I2C1_Init();
 }
@@ -194,8 +194,8 @@ static MCP23017_Status_t MCP23017_IO4_ReadReg(uint8_t RegAddr, uint8_t *Data, ui
 const MCP23017_IO_Drv_t MCP23017_IO1_Drv = {
 		.Init = MCP23017_IO_Init,
 		.DeInit = MCP23017_IO_DeInit,
-		.WriteReg = MCP23017_IO2_WriteReg,
-		.ReadReg = MCP23017_IO2_ReadReg,
+		.WriteReg = MCP23017_IO1_WriteReg,
+		.ReadReg = MCP23017_IO1_ReadReg,
 		.ioctl = MCP23017_IO_ioctl
 };
 
@@ -210,15 +210,15 @@ const MCP23017_IO_Drv_t MCP23017_IO2_Drv = {
 const MCP23017_IO_Drv_t MCP23017_IO3_Drv = {
 		.Init = MCP23017_IO_Init,
 		.DeInit = MCP23017_IO_DeInit,
-		.WriteReg = MCP23017_IO2_WriteReg,
-		.ReadReg = MCP23017_IO2_ReadReg,
+		.WriteReg = MCP23017_IO3_WriteReg,
+		.ReadReg = MCP23017_IO3_ReadReg,
 		.ioctl = MCP23017_IO_ioctl
 };
 
 const MCP23017_IO_Drv_t MCP23017_IO4_Drv = {
 		.Init = MCP23017_IO_Init,
 		.DeInit = MCP23017_IO_DeInit,
-		.WriteReg = MCP23017_IO2_WriteReg,
-		.ReadReg = MCP23017_IO2_ReadReg,
+		.WriteReg = MCP23017_IO4_WriteReg,
+		.ReadReg = MCP23017_IO4_ReadReg,
 		.ioctl = MCP23017_IO_ioctl
 };
