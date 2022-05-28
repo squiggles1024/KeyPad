@@ -41,7 +41,8 @@ extern "C" {
 void MX_DMA_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-void I2C_DMA_Init(void);
+void I2C1_DMA_Init(void);
+void I2C2_DMA_Init(void);
 void ADC_DMA_Init(void);
 void TIM_DMA_Init(void);
 /* USER CODE END Prototypes */
