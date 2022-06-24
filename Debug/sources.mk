@@ -22,8 +22,8 @@ C_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 Core/Src/IC_Drivers \
-Core/Src/KeyPadParts \
 Core/Src \
+Core/Src/KeyPadParts \
 Core/Src/art_assets \
 Core/Startup \
 Drivers/STM32F4xx_HAL_Driver/Src \

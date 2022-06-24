@@ -1,0 +1,5 @@
+../Core/Src/KeyPad.c:17:6:KeyPadInit	8	static
+../Core/Src/KeyPad.c:24:13:KeypadInitButtons	48	static
+../Core/Src/KeyPad.c:37:6:KeypadInitJoystick	104	static
+../Core/Src/KeyPad.c:45:6:KeypadInitLEDs	72	static
+../Core/Src/KeyPad.c:70:6:KeypadInitTouchButtons	56	static
