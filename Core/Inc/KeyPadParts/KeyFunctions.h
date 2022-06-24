@@ -14,6 +14,13 @@ typedef uint8_t ModifierKey;
 typedef uint8_t MouseClick;
 typedef int8_t MouseWheel;
 
+typedef struct{
+	uint8_t KeyScanCode;
+	uint8_t ModifierKey;
+	uint8_t MouseClick;
+	int8_t MouseWheel;
+}KeyFunction_t;
+
 //modifier key masks
 extern const ModifierKey KEY_MOD_NOMOD;
 extern const ModifierKey KEY_MOD_LCTRL;
