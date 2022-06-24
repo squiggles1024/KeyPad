@@ -11,7 +11,7 @@
 #include "gpio.h"
 
 #define BITS_PER_LED (24U)
-#define RESET_SIGNAL_LENGTH (64) //(64 halfwords * 1.25uS per words = 80uS)
+#define RESET_SIGNAL_LENGTH (64) //(64 halfwords * 1.25uS per halfwords = 80uS)
 #define LED_DMA_BUFFER_LENGTH (NUMBER_OF_LEDS * BITS_PER_LED + RESET_SIGNAL_LENGTH)
 
 
