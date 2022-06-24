@@ -20,6 +20,8 @@ static const uint8_t ADC_Y_INDEX = 0;
 static const int16_t ADC_UPPER_LIMIT = 2047;
 static const int16_t ADC_LOWER_LIMIT = -2048;
 static const volatile int16_t adc_buffer[2];
+static const int16_t ADC_X_OFFSET = 5;
+static const int16_t ADC_Y_OFFSET = -30;
 
 /**************************************//**************************************//**************************************
  * Private Function Defintions
@@ -65,7 +67,7 @@ static JoystickState_t JoystickIORead(uint16_t Deadzone, int16_t *X_Pos, int16_t
     }
 
     //Calculate X Position
-	int16_t temp = adc_buffer[ADC_X_INDEX] - 2048;
+	int16_t temp = adc_buffer[ADC_X_INDEX] - 2048 + ADC_X_OFFSET;
 	if(temp > ADC_UPPER_LIMIT){
 		temp = ADC_UPPER_LIMIT;
 	} else if (temp < ADC_LOWER_LIMIT){
@@ -79,7 +81,7 @@ static JoystickState_t JoystickIORead(uint16_t Deadzone, int16_t *X_Pos, int16_t
 	}
 
 	//Calculate Y Position
-	temp = adc_buffer[ADC_Y_INDEX] - 2048;
+	temp = adc_buffer[ADC_Y_INDEX] - 2048 + ADC_Y_OFFSET;
 	if(temp > ADC_UPPER_LIMIT){
 		temp = ADC_UPPER_LIMIT;
 	} else if (temp < ADC_LOWER_LIMIT){
