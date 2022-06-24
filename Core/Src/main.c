@@ -18,14 +18,8 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "adc.h"
-#include "dma.h"
-#include "i2c.h"
-#include "spi.h"
-#include "tim.h"
-#include "usart.h"
 #include "usb_device.h"
-#include "gpio.h"
+
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -108,14 +102,13 @@ int main(void)
   /* Initialize all configured peripherals */
 
   /* USER CODE BEGIN 2 */
-  //MX_GPIO_Init();
-  //MX_USART1_UART_Init();
   MX_USB_DEVICE_Init();
+  InitScreen();
+  InitLEDs();
+  InitTouchButtons();
   InitButtons();
   InitJoystick();
-  InitLEDs();
-  InitScreen();
-  InitTouchButtons();
+
   //InitTouch();
   /* USER CODE END 2 */
 
@@ -205,14 +198,27 @@ void InitJoystick(){
 }
 
 void InitLEDs(){
-	SerialLED_InitStruct_t LED_Settings = {
+	SerialLED_InitStruct_t LED_Settings[4] = {
+			{.red= 0xFF,
+			.green = 0x00,
+			.blue = 0x00},
+
+			{.red = 0x00,
 			.green = 0xFF,
-			.red = 0x00,
-			.blue = 0xFF
+			.blue = 0x00},
+
+			{.red = 0x00,
+			 .green = 0x00,
+			 .blue = 0xFF
+			},
+			{.red = 0xFF,
+			 .green = 0xFF,
+			 .blue = 0x00
+			}
 	};
 	for(uint8_t i = 0; i < NUMBER_OF_LEDS; i++){
-		LED_Settings.address = i;
-		SerialLEDInit(LED_Settings,&LED[i],LED_Drv);
+		LED_Settings[i].address = i;
+		SerialLEDInit(LED_Settings[i],&LED[i],LED_Drv);
 	}
 }
 
@@ -235,6 +241,7 @@ void InitScreen(){
 			.ImageLength = 62*62*3,
 			.ImageData = char_image
     };
+    HAL_Delay(100);
     LCD.Cursor.X = 40 - Image.Width / 2;
     LCD.Cursor.Y = 40 - Image.Height / 2;
     ILI9341_DisplayImage(&LCD, Image);
