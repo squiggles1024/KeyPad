@@ -9,155 +9,146 @@
 #define INC_KEYFUNCTIONS_H_
 #include <stdint.h>
 
-typedef uint8_t KeyScanCode;
-typedef uint8_t ModifierKey;
-typedef uint8_t MouseClick;
-typedef int8_t MouseWheel;
+typedef uint8_t KeyScanCode_t;
+typedef uint8_t ModifierKey_t;
+typedef uint8_t MouseClick_t;
+typedef int8_t MouseWheel_t;
 
 typedef struct{
-	uint8_t KeyScanCode;
-	uint8_t ModifierKey;
-	uint8_t MouseClick;
-	int8_t MouseWheel;
+	KeyScanCode_t KeyScanCode;
+	ModifierKey_t ModifierKey;
+	MouseClick_t MouseClick;
+	MouseWheel_t MouseWheel;
 }KeyFunction_t;
 
 //modifier key masks
-extern const ModifierKey KEY_MOD_NOMOD;
-extern const ModifierKey KEY_MOD_LCTRL;
-extern const ModifierKey KEY_MOD_LSHIFT;
-extern const ModifierKey KEY_MOD_LALT;
-extern const ModifierKey KEY_MOD_LMETA;
-extern const ModifierKey KEY_MOD_RCTRL;
-extern const ModifierKey KEY_MOD_RSHIFT;
-extern const ModifierKey KEY_MOD_RALT;
-extern const ModifierKey KEY_MOD_RMETA;
+#define KEY_MOD_NOMOD  (0x00)
+#define KEY_MOD_LCTRL  (0x01)
+#define KEY_MOD_LSHIFT (0x02)
+#define KEY_MOD_LALT   (0x04)
+#define KEY_MOD_LMETA  (0x08)
+#define KEY_MOD_RCTRL  (0x10)
+#define KEY_MOD_RSHIFT (0x20)
+#define KEY_MOD_RALT   (0x40)
+#define KEY_MOD_RMETA  (0x80)
 
 //mouse button masks
-extern const MouseClick MOUSE_CLICK_NONE;
-extern const MouseClick MOUSE_CLICK_LEFT;
-extern const MouseClick MOUSE_CLICK_RIGHT;
-extern const MouseClick MOUSE_CLICK_3;
-extern const MouseClick MOUSE_CLICK_4;
-extern const MouseClick MOUSE_CLICK_5;
+#define MOUSE_CLICK_NONE  (0x00)
+#define MOUSE_CLICK_LEFT  (0x01)
+#define MOUSE_CLICK_RIGHT (0x02)
+#define MOUSE_CLICK_3     (0x04)
+#define MOUSE_CLICK_4     (0x08)
+#define MOUSE_CLICK_5     (0x10)
 
 //mouse wheel values
-extern const MouseWheel MOUSE_WHEEL_UP;
-extern const MouseWheel MOUSE_WHEEL_NO_MOVE;
-extern const MouseWheel MOUSE_WHEEL_DOWN;
+#define MOUSE_WHEEL_UP (0x01)
+#define MOUSE_WHEEL_NO_MOVE (0x00)
+#define MOUSE_WHEEL_DOWN (-0x01)
 
-/**
- * Scan codes - last N slots in the HID report (usually 6).
- *;0 if no key pressed.
- *
- * If more than N keys are pressed, the HID reports
- * KEY_ERR_OVF in all slots to indicate this condition.
- */
+//KeyScanCode values
+#define KEY_NONE (0x00) // No key pressed
+#define KEY_ERR_OVF (0x01) //  Keyboard Error Roll Over - used for all slots if too many keys are pressed ("Phantom key")
+#define KEY_POST_FAIL (0x02) //  Keyboard POST Fail
+#define KEY_ERR_UNDF (0x03) //  Keyboard Error Undefined
+#define KEY_A (0x04) // Keyboard a and A
+#define KEY_B (0x05) // Keyboard b and B
+#define KEY_C (0x06) // Keyboard c and C
+#define KEY_D (0x07) // Keyboard d and D
+#define KEY_E (0x08) // Keyboard e and E
+#define KEY_F (0x09) // Keyboard f and F
+#define KEY_G (0x0a) // Keyboard g and G
+#define KEY_H (0x0b) // Keyboard h and H
+#define KEY_I (0x0c) // Keyboard i and I
+#define KEY_J (0x0d) // Keyboard j and J
+#define KEY_K (0x0e) // Keyboard k and K
+#define KEY_L (0x0f) // Keyboard l and L
+#define KEY_M (0x10) // Keyboard m and M
+#define KEY_N (0x11) // Keyboard n and N
+#define KEY_O (0x12) // Keyboard o and O
+#define KEY_P (0x13) // Keyboard p and P
+#define KEY_Q (0x14) // Keyboard q and Q
+#define KEY_R (0x15) // Keyboard r and R
+#define KEY_S (0x16) // Keyboard s and S
+#define KEY_T (0x17) // Keyboard t and T
+#define KEY_U (0x18) // Keyboard u and U
+#define KEY_V (0x19) // Keyboard v and V
+#define KEY_W (0x1a) // Keyboard w and W
+#define KEY_X (0x1b) // Keyboard x and X
+#define KEY_Y (0x1c) // Keyboard y and Y
+#define KEY_Z (0x1d) // Keyboard z and Z
 
-extern const KeyScanCode KEY_NONE; // No key pressed
-extern const KeyScanCode KEY_ERR_OVF; //  Keyboard Error Roll Over - used for all slots if too many keys are pressed ("Phantom key")
-extern const KeyScanCode KEY_POST_FAIL; //  Keyboard POST Fail
-extern const KeyScanCode KEY_ERR_UNDF; //  Keyboard Error Undefined
-extern const KeyScanCode KEY_A; // Keyboard a and A
-extern const KeyScanCode KEY_B; // Keyboard b and B
-extern const KeyScanCode KEY_C; // Keyboard c and C
-extern const KeyScanCode KEY_D; // Keyboard d and D
-extern const KeyScanCode KEY_E; // Keyboard e and E
-extern const KeyScanCode KEY_F; // Keyboard f and F
-extern const KeyScanCode KEY_G; // Keyboard g and G
-extern const KeyScanCode KEY_H; // Keyboard h and H
-extern const KeyScanCode KEY_I; // Keyboard i and I
-extern const KeyScanCode KEY_J; // Keyboard j and J
-extern const KeyScanCode KEY_K; // Keyboard k and K
-extern const KeyScanCode KEY_L; // Keyboard l and L
-extern const KeyScanCode KEY_M; // Keyboard m and M
-extern const KeyScanCode KEY_N; // Keyboard n and N
-extern const KeyScanCode KEY_O; // Keyboard o and O
-extern const KeyScanCode KEY_P; // Keyboard p and P
-extern const KeyScanCode KEY_Q; // Keyboard q and Q
-extern const KeyScanCode KEY_R; // Keyboard r and R
-extern const KeyScanCode KEY_S; // Keyboard s and S
-extern const KeyScanCode KEY_T; // Keyboard t and T
-extern const KeyScanCode KEY_U; // Keyboard u and U
-extern const KeyScanCode KEY_V; // Keyboard v and V
-extern const KeyScanCode KEY_W; // Keyboard w and W
-extern const KeyScanCode KEY_X; // Keyboard x and X
-extern const KeyScanCode KEY_Y; // Keyboard y and Y
-extern const KeyScanCode KEY_Z; // Keyboard z and Z
+#define KEY_1 (0x1e) // Keyboard 1 and !
+#define KEY_2 (0x1f) // Keyboard 2 and @
+#define KEY_3 (0x20) // Keyboard 3 and #
+#define KEY_4 (0x21) // Keyboard 4 and $
+#define KEY_5 (0x22) // Keyboard 5 and %
+#define KEY_6 (0x23) // Keyboard 6 and ^
+#define KEY_7 (0x24) // Keyboard 7 and &
+#define KEY_8 (0x25) // Keyboard 8 and *
+#define KEY_9 (0x26) // Keyboard 9 and (
+#define KEY_0 (0x27) // Keyboard 0 and )
 
-extern const KeyScanCode KEY_1; // Keyboard 1 and !
-extern const KeyScanCode KEY_2; // Keyboard 2 and @
-extern const KeyScanCode KEY_3; // Keyboard 3 and #
-extern const KeyScanCode KEY_4; // Keyboard 4 and $
-extern const KeyScanCode KEY_5; // Keyboard 5 and %
-extern const KeyScanCode KEY_6; // Keyboard 6 and ^
-extern const KeyScanCode KEY_7; // Keyboard 7 and &
-extern const KeyScanCode KEY_8; // Keyboard 8 and *
-extern const KeyScanCode KEY_9; // Keyboard 9 and (
-extern const KeyScanCode KEY_0; // Keyboard 0 and )
+#define KEY_ENTER (0x28) // Keyboard Return (ENTER)
+#define KEY_ESC (0x29) // Keyboard ESCAPE
+#define KEY_BACKSPACE (0x2a) // Keyboard DELETE (Backspace)
+#define KEY_TAB (0x2b) // Keyboard Tab
+#define KEY_SPACE (0x2c) // Keyboard Spacebar
+#define KEY_MINUS (0x2d) // Keyboard - and _
+#define KEY_EQUAL (0x2e) // Keyboard (and +
+#define KEY_LEFTBRACE (0x2f) // Keyboard [ and {
+#define KEY_RIGHTBRACE (0x30) // Keyboard ] and }
+#define KEY_BACKSLASH (0x31) // Keyboard \ and |
+#define KEY_HASHTILDE (0x32) // Keyboard Non-US # and ~
+#define KEY_SEMICOLON (0x33) // Keyboard ) and :
+#define KEY_APOSTROPHE (0x34) // Keyboard ' and "
+#define KEY_GRAVE (0x35) // Keyboard ` and ~
+#define KEY_COMMA (0x36) // Keyboard , and <
+#define KEY_DOT (0x37) // Keyboard . and >
+#define KEY_SLASH (0x38) // Keyboard / and ?
+#define KEY_CAPSLOCK (0x39) // Keyboard Caps Lock
 
-extern const KeyScanCode KEY_ENTER; // Keyboard Return (ENTER)
-extern const KeyScanCode KEY_ESC; // Keyboard ESCAPE
-extern const KeyScanCode KEY_BACKSPACE; // Keyboard DELETE (Backspace)
-extern const KeyScanCode KEY_TAB; // Keyboard Tab
-extern const KeyScanCode KEY_SPACE; // Keyboard Spacebar
-extern const KeyScanCode KEY_MINUS; // Keyboard - and _
-extern const KeyScanCode KEY_EQUAL; // Keyboard = and +
-extern const KeyScanCode KEY_LEFTBRACE; // Keyboard [ and {
-extern const KeyScanCode KEY_RIGHTBRACE; // Keyboard ] and }
-extern const KeyScanCode KEY_BACKSLASH; // Keyboard \ and |
-extern const KeyScanCode KEY_HASHTILDE; // Keyboard Non-US # and ~
-extern const KeyScanCode KEY_SEMICOLON; // Keyboard ; and :
-extern const KeyScanCode KEY_APOSTROPHE; // Keyboard ' and "
-extern const KeyScanCode KEY_GRAVE; // Keyboard ` and ~
-extern const KeyScanCode KEY_COMMA; // Keyboard , and <
-extern const KeyScanCode KEY_DOT; // Keyboard . and >
-extern const KeyScanCode KEY_SLASH; // Keyboard / and ?
-extern const KeyScanCode KEY_CAPSLOCK; // Keyboard Caps Lock
+#define KEY_F1 (0x3a) // Keyboard F1
+#define KEY_F2 (0x3b) // Keyboard F2
+#define KEY_F3 (0x3c) // Keyboard F3
+#define KEY_F4 (0x3d) // Keyboard F4
+#define KEY_F5 (0x3e) // Keyboard F5
+#define KEY_F6 (0x3f) // Keyboard F6
+#define KEY_F7 (0x40) // Keyboard F7
+#define KEY_F8 (0x41) // Keyboard F8
+#define KEY_F9 (0x42) // Keyboard F9
+#define KEY_F10 (0x43) // Keyboard F10
+#define KEY_F11 (0x44) // Keyboard F11
+#define KEY_F12 (0x45) // Keyboard F12
 
-extern const KeyScanCode KEY_F1; // Keyboard F1
-extern const KeyScanCode KEY_F2; // Keyboard F2
-extern const KeyScanCode KEY_F3; // Keyboard F3
-extern const KeyScanCode KEY_F4; // Keyboard F4
-extern const KeyScanCode KEY_F5; // Keyboard F5
-extern const KeyScanCode KEY_F6; // Keyboard F6
-extern const KeyScanCode KEY_F7; // Keyboard F7
-extern const KeyScanCode KEY_F8; // Keyboard F8
-extern const KeyScanCode KEY_F9; // Keyboard F9
-extern const KeyScanCode KEY_F10; // Keyboard F10
-extern const KeyScanCode KEY_F11; // Keyboard F11
-extern const KeyScanCode KEY_F12; // Keyboard F12
+#define KEY_SYSRQ (0x46) // Keyboard Print Screen
+#define KEY_SCROLLLOCK (0x47) // Keyboard Scroll Lock
+#define KEY_PAUSE (0x48) // Keyboard Pause
+#define KEY_INSERT (0x49) // Keyboard Insert
+#define KEY_HOME (0x4a) // Keyboard Home
+#define KEY_PAGEUP (0x4b) // Keyboard Page Up
+#define KEY_DELETE (0x4c) // Keyboard Delete Forward
+#define KEY_END (0x4d) // Keyboard End
+#define KEY_PAGEDOWN (0x4e) // Keyboard Page Down
+#define KEY_RIGHT (0x4f) // Keyboard Right Arrow
+#define KEY_LEFT (0x50) // Keyboard Left Arrow
+#define KEY_DOWN (0x51) // Keyboard Down Arrow
+#define KEY_UP (0x52) // Keyboard Up Arrow
 
-extern const KeyScanCode KEY_SYSRQ; // Keyboard Print Screen
-extern const KeyScanCode KEY_SCROLLLOCK; // Keyboard Scroll Lock
-extern const KeyScanCode KEY_PAUSE; // Keyboard Pause
-extern const KeyScanCode KEY_INSERT; // Keyboard Insert
-extern const KeyScanCode KEY_HOME; // Keyboard Home
-extern const KeyScanCode KEY_PAGEUP; // Keyboard Page Up
-extern const KeyScanCode KEY_DELETE; // Keyboard Delete Forward
-extern const KeyScanCode KEY_END; // Keyboard End
-extern const KeyScanCode KEY_PAGEDOWN; // Keyboard Page Down
-extern const KeyScanCode KEY_RIGHT; // Keyboard Right Arrow
-extern const KeyScanCode KEY_LEFT; // Keyboard Left Arrow
-extern const KeyScanCode KEY_DOWN; // Keyboard Down Arrow
-extern const KeyScanCode KEY_UP; // Keyboard Up Arrow
-
-extern const KeyScanCode KEY_NUMLOCK; // Keyboard Num Lock and Clear
-extern const KeyScanCode KEY_KPSLASH; // Keypad /
-extern const KeyScanCode KEY_KPASTERISK; // Keypad *
-extern const KeyScanCode KEY_KPMINUS; // Keypad -
-extern const KeyScanCode KEY_KPPLUS; // Keypad +
-extern const KeyScanCode KEY_KPENTER; // Keypad ENTER
-extern const KeyScanCode KEY_KP1; // Keypad 1 and End
-extern const KeyScanCode KEY_KP2; // Keypad 2 and Down Arrow
-extern const KeyScanCode KEY_KP3; // Keypad 3 and PageDn
-extern const KeyScanCode KEY_KP4; // Keypad 4 and Left Arrow
-extern const KeyScanCode KEY_KP5; // Keypad 5
-extern const KeyScanCode KEY_KP6; // Keypad 6 and Right Arrow
-extern const KeyScanCode KEY_KP7; // Keyp ad 7 and Home
-extern const KeyScanCode KEY_KP8; // Keypad 8 and Up Arrow
-extern const KeyScanCode KEY_KP9; // Keypad 9 and Page Up
-extern const KeyScanCode KEY_KP0; // Keypad 0 and Insert
-extern const KeyScanCode KEY_KPDOT; // Keypad . and Delete
-
-
+#define KEY_NUMLOCK (0x53) // Keyboard Num Lock and Clear
+#define KEY_KPSLASH (0x54) // Keypad /
+#define KEY_KPASTERISK (0x55) // Keypad *
+#define KEY_KPMINUS (0x56) // Keypad -
+#define KEY_KPPLUS (0x57) // Keypad +
+#define KEY_KPENTER (0x58) // Keypad ENTER
+#define KEY_KP1 (0x59) // Keypad 1 and End
+#define KEY_KP2 (0x5a) // Keypad 2 and Down Arrow
+#define KEY_KP3 (0x5b) // Keypad 3 and PageDn
+#define KEY_KP4 (0x5c) // Keypad 4 and Left Arrow
+#define KEY_KP5 (0x5d) // Keypad 5
+#define KEY_KP6 (0x5e) // Keypad 6 and Right Arrow
+#define KEY_KP7 (0x5f) // Keyp ad 7 and Home
+#define KEY_KP8 (0x60) // Keypad 8 and Up Arrow
+#define KEY_KP9 (0x61) // Keypad 9 and Page Up
+#define KEY_KP0 (0x62) // Keypad 0 and Insert
+#define KEY_KPDOT (0x63) // Keypad . and Delete
 #endif /* INC_KEYFUNCTIONS_H_ */
