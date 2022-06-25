@@ -38,20 +38,20 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pcd_ex.h \
  ../USB_DEVICE/App/usb_device.h \
  ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h \
- ../USB_DEVICE/Target/usbd_conf.h ../Core/Inc/KeyPadParts/Button.h \
- ../Core/Inc/KeyPadParts/KeyFunctions.h \
+ ../USB_DEVICE/Target/usbd_conf.h ../Core/Inc/KeyPad.h \
+ ../Core/Inc/KeyPadParts/Button.h ../Core/Inc/KeyPadParts/KeyFunctions.h \
  ../Core/Inc/KeyPadParts/Button_Hardware.h \
  ../Core/Inc/IC_Drivers/MCP23017.h \
  ../Core/Inc/IC_Drivers/MCP23017_Hardware.h \
  ../Core/Inc/KeyPadParts/Joystick.h \
  ../Core/Inc/KeyPadParts/Joystick_Hardware.h \
+ ../Core/Inc/KeyPadParts/TouchButton.h \
+ ../Core/Inc/KeyPadParts/TouchButton_Hardware.h \
+ ../Core/Inc/IC_Drivers/FT6206.h ../Core/Inc/IC_Drivers/FT6206_Hardware.h \
  ../Core/Inc/KeyPadParts/SerialLED.h \
  ../Core/Inc/KeyPadParts/SerialLED_Hardware.h \
  ../Core/Inc/IC_Drivers/ILI9341.h \
- ../Core/Inc/IC_Drivers/ILI9341_Hardware.h ../Core/Inc/art_assets/art.h \
- ../Core/Inc/KeyPadParts/TouchButton.h \
- ../Core/Inc/KeyPadParts/TouchButton_Hardware.h \
- ../Core/Inc/IC_Drivers/FT6206.h ../Core/Inc/IC_Drivers/FT6206_Hardware.h
+ ../Core/Inc/IC_Drivers/ILI9341_Hardware.h ../Core/Inc/art_assets/art.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -93,6 +93,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../USB_DEVICE/App/usb_device.h:
 ../Middlewares/ST/STM32_USB_Device_Library/Core/Inc/usbd_def.h:
 ../USB_DEVICE/Target/usbd_conf.h:
+../Core/Inc/KeyPad.h:
 ../Core/Inc/KeyPadParts/Button.h:
 ../Core/Inc/KeyPadParts/KeyFunctions.h:
 ../Core/Inc/KeyPadParts/Button_Hardware.h:
@@ -100,12 +101,12 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/IC_Drivers/MCP23017_Hardware.h:
 ../Core/Inc/KeyPadParts/Joystick.h:
 ../Core/Inc/KeyPadParts/Joystick_Hardware.h:
+../Core/Inc/KeyPadParts/TouchButton.h:
+../Core/Inc/KeyPadParts/TouchButton_Hardware.h:
+../Core/Inc/IC_Drivers/FT6206.h:
+../Core/Inc/IC_Drivers/FT6206_Hardware.h:
 ../Core/Inc/KeyPadParts/SerialLED.h:
 ../Core/Inc/KeyPadParts/SerialLED_Hardware.h:
 ../Core/Inc/IC_Drivers/ILI9341.h:
 ../Core/Inc/IC_Drivers/ILI9341_Hardware.h:
 ../Core/Inc/art_assets/art.h:
-../Core/Inc/KeyPadParts/TouchButton.h:
-../Core/Inc/KeyPadParts/TouchButton_Hardware.h:
-../Core/Inc/IC_Drivers/FT6206.h:
-../Core/Inc/IC_Drivers/FT6206_Hardware.h:
