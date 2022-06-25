@@ -14,23 +14,18 @@
 #include "SerialLED.h"
 
 #define NUMBER_OF_BUTTONS (NUMBER_OF_IO_EXPANDERS*PINS_PER_EXPANDER) //64
+#define SIMULTANEOUS_BUTTONS (37) //34 Buttons + 1 stick button + 1 joystick direction + 1 touch button can be pressed simultaneously.
 
 typedef enum{
-	MouseChange,
-	KeyboardData,
-	NoKeypadChange
+	NoKeypadChange,
+	MouseDataAvailable,
+	KeyboardDataAvailable
 }KeypadFlagStatus_t;
-
-typedef enum{
-    ButtonFunction,
-    TouchButtonFunction,
-	JoystickFunction
-}KeypadFunctionType_t;
 
 typedef struct{
     uint8_t modifiers;
     const uint8_t reserved;
-    uint8_t keycodes[NUMBER_OF_BUTTONS];
+    uint8_t keycodes[SIMULTANEOUS_BUTTONS];
 }__attribute__((packed)) KeyPad_KeyboardUSBBuffer_t;
 
 typedef struct{
@@ -46,17 +41,17 @@ typedef struct{
 	Button_Handle_t Buttons[NUMBER_OF_BUTTONS];
 	Joystick_Handle_t Joystick;
 	SerialLED_Handle_t LED[NUMBER_OF_LEDS];
-	TouchButton_Handle_t TouchButton[12];
+	TouchButton_Handle_t TouchButton[NUMBER_OF_TOUCH_BUTTONS];
 	KeyPad_KeyboardUSBBuffer_t KeyboardUSBBuffer;
 	KeyPad_MouseUSBBuffer_t MouseUSBBuffer;
 }KeyPadHandle_t;
 
 void KeyPadInit();
-void UpdateKeyPad();
+void UpdateKeyPadTxBuffers();
 void AssignNewButtonFunction(uint8_t ButtonIndex, KeyFunction_t NewFunction);
 void AssignNewJoystickFunction(Joystick_Init_Struct_t Settings);
 void AssignNewTouchButtonFunction(uint8_t TouchButtonIndex);
 
-extern KeyPadHandle_t Keypad;
+extern KeyPadHandle_t KeyPad;
 
 #endif /* INC_KEYPAD_H_ */
