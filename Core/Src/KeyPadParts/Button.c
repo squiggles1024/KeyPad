@@ -29,8 +29,6 @@ void ButtonInit(Button_Init_Struct_t Settings, Button_Handle_t *Button, Button_I
 
 	Button->ButtonIDNumber = Settings.ButtonIDNumber;
 	Button->KeyFunction = Settings.KeyFunction;
-	Button->ModKeyFunction = Settings.ModKeyFunction;
-	Button->MouseFunction = Settings.MouseFunction;
 	Button->State = ButtonUnpressed;
 }
 
@@ -58,9 +56,6 @@ ButtonStatus_t ButtonRead(Button_Handle_t *Button){
  *@Precondition: None
  *@Postcondition: ButtonHandle have its functions assigned according to passed parameters.
  **************************************//**************************************/
-void ButtonSetFunction(Button_Handle_t* Button, KeyScanCode KeyFunc, ModifierKey ModKey, MouseClick MouseFunction, MouseWheel WheelFunction){
-	Button->KeyFunction = KeyFunc;
-	Button->ModKeyFunction = ModKey;
-	Button->MouseFunction = MouseFunction;
-	Button->WheelFunction = WheelFunction;
+void ButtonSetFunction(Button_Handle_t* Button, KeyFunction_t NewFunction){
+	Button->KeyFunction = NewFunction;
 }

@@ -77,7 +77,7 @@ JoystickStatus_t JoystickRead(Joystick_Handle_t *Joystick){
  *@Precondition: None
  *@Postcondition: Joystick ___Position function will be updated.
  **************************************//**************************************/
-void JoystickSetFunction(Joystick_Handle_t* Joystick, JoystickState_t Position, JoystickDirectionFunction_t NewFunction){
+void JoystickSetFunction(Joystick_Handle_t* Joystick, JoystickState_t Position, KeyFunction_t NewFunction){
 
 	switch(Position){
 	case(Joystick_Right):
