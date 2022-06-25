@@ -17,6 +17,8 @@
 /**************************************//**************************************//**************************************
  * Enums
  **************************************//**************************************//**************************************/
+#define JOYSTICK_DIRECTIONS (8)
+
 typedef enum{
 	JoystickChanged = 0,
 	JoystickUnchanged,
@@ -32,24 +34,18 @@ typedef enum{
 /**************************************//**************************************//**************************************
  * Driver Structs
  **************************************//**************************************//**************************************/
-typedef struct{
-	KeyScanCode KeyFunction;
-	ModifierKey ModKeyFunction;
-    MouseClick  MouseFunction;
-    MouseWheel  WheelFunction;
-}JoystickDirectionFunction_t;
 
 typedef struct{
 	uint16_t DeadZone;
 	JoystickMode_t Mode;
-	JoystickDirectionFunction_t RightFunction;
-	JoystickDirectionFunction_t UpRightFunction;
-	JoystickDirectionFunction_t UpFunction;
-	JoystickDirectionFunction_t UpLeftFunction;
-	JoystickDirectionFunction_t LeftFunction;
-	JoystickDirectionFunction_t DownLeftFunction;
-	JoystickDirectionFunction_t DownFunction;
-	JoystickDirectionFunction_t DownRightFunction;
+	KeyFunction_t RightFunction;
+	KeyFunction_t UpRightFunction;
+	KeyFunction_t UpFunction;
+	KeyFunction_t UpLeftFunction;
+	KeyFunction_t LeftFunction;
+	KeyFunction_t DownLeftFunction;
+	KeyFunction_t DownFunction;
+	KeyFunction_t DownRightFunction;
 }Joystick_Init_Struct_t;
 
 typedef struct{
@@ -58,14 +54,14 @@ typedef struct{
     JoystickState_t Position;
     uint16_t DeadZone;
     JoystickMode_t Mode;
-	JoystickDirectionFunction_t RightFunction;
-	JoystickDirectionFunction_t UpRightFunction;
-	JoystickDirectionFunction_t UpFunction;
-	JoystickDirectionFunction_t UpLeftFunction;
-	JoystickDirectionFunction_t LeftFunction;
-	JoystickDirectionFunction_t DownLeftFunction;
-	JoystickDirectionFunction_t DownFunction;
-	JoystickDirectionFunction_t DownRightFunction;
+    KeyFunction_t RightFunction;
+    KeyFunction_t UpRightFunction;
+    KeyFunction_t UpFunction;
+    KeyFunction_t UpLeftFunction;
+    KeyFunction_t LeftFunction;
+    KeyFunction_t DownLeftFunction;
+    KeyFunction_t DownFunction;
+    KeyFunction_t DownRightFunction;
     Joystick_IO_Drv_t IO_Driver;
 }Joystick_Handle_t;
 
@@ -74,7 +70,7 @@ typedef struct{
  **************************************//**************************************//**************************************/
 void JoystickInit(Joystick_Init_Struct_t Settings, Joystick_Handle_t *Joystick, Joystick_IO_Drv_t IO);
 JoystickStatus_t JoystickRead(Joystick_Handle_t *Joystick);
-void JoystickSetFunction(Joystick_Handle_t* Joystick, JoystickState_t Position, JoystickDirectionFunction_t NewFunction);
+void JoystickSetFunction(Joystick_Handle_t* Joystick, JoystickState_t Position, KeyFunction_t NewFunction);
 void JoystickSetMode(Joystick_Handle_t* Joystick, JoystickMode_t NewMode);
 
 

@@ -28,18 +28,12 @@ typedef enum{
  **************************************//**************************************//**************************************/
 typedef struct{
 	uint8_t ButtonIDNumber;
-	KeyScanCode KeyFunction;
-	ModifierKey ModKeyFunction;
-    MouseClick  MouseFunction;
-    MouseWheel  WheelFunction;
+	KeyFunction_t KeyFunction;
 }Button_Init_Struct_t;
 
 typedef struct{
 	uint8_t ButtonIDNumber;
-	KeyScanCode KeyFunction;
-	ModifierKey ModKeyFunction;
-    MouseClick  MouseFunction;
-    MouseWheel  WheelFunction;
+	KeyFunction_t KeyFunction;
     ButtonState_t State;
     Button_IO_Drv_t IO_Driver;
 }Button_Handle_t;
@@ -49,6 +43,6 @@ typedef struct{
  **************************************//**************************************//**************************************/
 void ButtonInit(Button_Init_Struct_t Settings, Button_Handle_t *Button, Button_IO_Drv_t IO);
 ButtonStatus_t ButtonRead(Button_Handle_t *Button);
-void ButtonSetFunction(Button_Handle_t* Button, KeyScanCode KeyFunc, ModifierKey ModKey, MouseClick MouseFunction, MouseWheel WheelFunction);
+void ButtonSetFunction(Button_Handle_t* Button, KeyFunction_t NewFunction);
 
 #endif /* INC_BUTTON_H_ */
