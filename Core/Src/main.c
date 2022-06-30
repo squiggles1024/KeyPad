@@ -15,110 +15,50 @@
   *
   ******************************************************************************
   */
-/* USER CODE END Header */
-/* Includes ------------------------------------------------------------------*/
+/**************************************//**************************************//**************************************
+ * Includes
+ **************************************//**************************************//**************************************/
 #include "main.h"
-#include "usb_device.h"
-
-
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
 #include "KeyPad.h"
-#include "Button.h"
-#include "Joystick.h"
-#include "SerialLED.h"
 #include "ILI9341.h"
 #include "art.h"
-#include "TouchButton.h"
-/* USER CODE END Includes */
 
-/* Private typedef -----------------------------------------------------------*/
-/* USER CODE BEGIN PTD */
-
-/* USER CODE END PTD */
-
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
-/* USER CODE END PD */
-
-/* Private macro -------------------------------------------------------------*/
-/* USER CODE BEGIN PM */
-
-/* USER CODE END PM */
-
-/* Private variables ---------------------------------------------------------*/
-
-/* USER CODE BEGIN PV */
-
-/* USER CODE END PV */
-
-/* Private function prototypes -----------------------------------------------*/
+/**************************************//**************************************//**************************************
+ * Public Function Declarations
+ **************************************//**************************************//**************************************/
 void SystemClock_Config(void);
-/* USER CODE BEGIN PFP */
-
 void InitScreen();
 
-//void InitTouch();
-/* USER CODE END PFP */
-
-/* Private user code ---------------------------------------------------------*/
-/* USER CODE BEGIN 0 */
+/**************************************//**************************************//**************************************
+ * Global Variables
+ **************************************//**************************************//**************************************/
 ILI9341_Handle_t LCD;
-/* USER CODE END 0 */
 
+/**************************************//**************************************//**************************************
+ * Public Function Definitions
+ **************************************//**************************************//**************************************/
 /**
   * @brief  The application entry point.
   * @retval int
   */
 int main(void)
 {
-  /* USER CODE BEGIN 1 */
 
-  /* USER CODE END 1 */
-
-  /* MCU Configuration--------------------------------------------------------*/
-
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
 
-  /* USER CODE BEGIN Init */
-
-  /* USER CODE END Init */
-
-  /* Configure the system clock */
   SystemClock_Config();
 
-  /* USER CODE BEGIN SysInit */
 
-  /* USER CODE END SysInit */
+  InitScreen(); //Put button icons on screen
+  KeyPadInit(); //Initialize KeyPad hardware
 
-  /* Initialize all configured peripherals */
-
-  /* USER CODE BEGIN 2 */
-  MX_USB_DEVICE_Init();
-  InitScreen();
-  KeyPadInit();
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
   while (1)
   {
-	 /*
-	 for(uint8_t i = 0; i < 64; i++){
-		 ButtonRead(&KeyPad.Buttons[i]);
-	 }
-	 for(uint8_t i = 0; i < 12; i++){
-		 TouchButtonRead(&KeyPad.TouchButton[i]);
-	 }
-	JoystickRead(&KeyPad.Joystick);
-	*/
-	 UpdateKeyPadTxBuffers();
-    /* USER CODE END WHILE */
+	 UpdateKeyPadTxBuffers(); //Poll buttons and update Tx Buffers
+	 KeyPadSendData();        //Send data if a change is detected (or if a mousewheel function is detected)
 
-    /* USER CODE BEGIN 3 */
   }
-  /* USER CODE END 3 */
+
 }
 
 /**
@@ -166,7 +106,6 @@ void SystemClock_Config(void)
   }
 }
 
-/* USER CODE BEGIN 4 */
 
 void InitScreen(){
 	ILI9341_Init_Struct_t Settings = {
@@ -248,7 +187,6 @@ void InitScreen(){
     ILI9341_DisplayImage(&LCD, Image);
 }
 
-/* USER CODE END 4 */
 
 /**
   * @brief  This function is executed in case of error occurrence.
@@ -256,13 +194,13 @@ void InitScreen(){
   */
 void Error_Handler(void)
 {
-  /* USER CODE BEGIN Error_Handler_Debug */
+
   /* User can add his own implementation to report the HAL error return state */
   __disable_irq();
   while (1)
   {
   }
-  /* USER CODE END Error_Handler_Debug */
+
 }
 
 #ifdef  USE_FULL_ASSERT
