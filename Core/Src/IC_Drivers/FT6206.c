@@ -4,8 +4,14 @@
  *  Created on: May 26, 2022
  *      Author: evanl
  */
+/**************************************//**************************************//**************************************
+ * Includes
+ **************************************//**************************************//**************************************/
 #include "FT6206.h"
 
+/**************************************//**************************************//**************************************
+ * Exported Constants
+ **************************************//**************************************//**************************************/
 const FT6206_Reg_t DEV_MODE = 0x00;
 const FT6206_Reg_t GEST_ID = 0x01;
 const FT6206_Reg_t TD_STATUS = 0x02;
@@ -43,8 +49,21 @@ const FT6206_Reg_t FOCALTECH_ID = 0xA8;
 const FT6206_Reg_t RELEASE_CODE_ID = 0xAF;
 const FT6206_Reg_t STATE = 0xBC;
 
+/**************************************//**************************************//**************************************
+ * Private Variables
+ **************************************//**************************************//**************************************/
 static uint8_t touch_screen_buffer[4];
 
+/**************************************//**************************************//**************************************
+ * Public Function Definitions
+ **************************************//**************************************//**************************************/
+/**************************************//**************************************
+ *@Brief: Initializes a FT6206 Device Handle
+ *@Params: Device Handle pointer, IO Driver struct
+ *@Return: None
+ *@Precondition: None
+ *@Postcondition: Device handle will have low level hardware initialized (I2C, GPIO, DMA)
+ **************************************//**************************************/
 void FT6206_Init(FT6206_Handle_t *Dev, FT6206_IO_Drv_t IO_Drv){
 	Dev->P1_XPos = 0;
 	Dev->P1_YPos = 0;
@@ -55,6 +74,13 @@ void FT6206_Init(FT6206_Handle_t *Dev, FT6206_IO_Drv_t IO_Drv){
 	//FT6206_ReadScreen(Dev);
 }
 
+/**************************************//**************************************
+ *@Brief: Deinitializes FT6206 device handle
+ *@Params: FT6206 device handle to deinitialize
+ *@Return: None
+ *@Precondition: None
+ *@Postcondition: DMA will be disabled, and IO driver initialized to null
+ **************************************//**************************************/
 void FT6206_DeInit(FT6206_Handle_t *Dev){
 	Dev->IO_Driver.deinit();
 	Dev->IO_Driver.init = '\0';
@@ -64,6 +90,13 @@ void FT6206_DeInit(FT6206_Handle_t *Dev){
 	Dev->IO_Driver.ioctl = '\0';
 }
 
+/**************************************//**************************************
+ *@Brief: Reads the touch screen
+ *@Params: Device handle to read
+ *@Return: None
+ *@Precondition: Device handle should be initialized
+ *@Postcondition: Dev.State and Coordinates will be updated (Pressed/Unpressed and position)
+ **************************************//**************************************/
 void FT6206_ReadScreen(FT6206_Handle_t *Dev){
 	//uint8_t buffer[4];
 	Dev->P1_YPos = 240 - ((touch_screen_buffer[0] << 8 | touch_screen_buffer[1]) & 0x0FFF);
@@ -72,15 +105,35 @@ void FT6206_ReadScreen(FT6206_Handle_t *Dev){
 	Dev->IO_Driver.read(P1_XH, touch_screen_buffer, 4);
 }
 
-
+/**************************************//**************************************
+ *@Brief: Stops FT6206 DMA Engine
+ *@Params: Device handle to stop
+ *@Return: None
+ *@Precondition: Device handle should be initialized.
+ *@Postcondition: Device DMA engine will be stopped.
+ **************************************//**************************************/
 void FT6206_Halt(FT6206_Handle_t *Dev){
 	Dev->IO_Driver.deinit();
 }
 
+/**************************************//**************************************
+ *@Brief: Reads a FT6206 Device Register
+ *@Params: Device handle, register to read, data buffer, number of bytes
+ *@Return: None
+ *@Precondition: Device handle should be initialized.
+ *@Postcondition: pdata will contain FT6206 register data
+ **************************************//**************************************/
 void FT6206_ReadReg(FT6206_Handle_t *Dev, FT6206_Reg_t reg, uint8_t* pdata, uint8_t length){
     Dev->IO_Driver.read(reg, pdata, length);
 }
 
+/**************************************//**************************************
+ *@Brief: Writes to a FT6206 Device Register
+ *@Params: Device handle, reg to read, data buffer to write, number of bytes to write
+ *@Return: None
+ *@Precondition: Device handle should be initialized. pdata should be able to store length bytes
+ *@Postcondition: pdata will be written to FT6206 device register
+ **************************************//**************************************/
 void FT6206_WriteReg(FT6206_Handle_t *Dev, FT6206_Reg_t reg, uint8_t* pdata, uint8_t length){
 	Dev->IO_Driver.write(reg, pdata, length);
 }

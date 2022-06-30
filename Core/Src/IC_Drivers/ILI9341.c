@@ -1,8 +1,17 @@
+/**************************************//**************************************//**************************************
+ * Includes
+ **************************************//**************************************//**************************************/
 #include <ILI9341.h>
 #include <ILI9341_Hardware.h>
 
+/**************************************//**************************************//**************************************
+ * Defines
+ **************************************//**************************************//**************************************/
 #define CAST_AND_DEREFERENCE_32bitPtr(x) *((const uint32_t*)(&x))
 
+/**************************************//**************************************//**************************************
+ * Structs
+ **************************************//**************************************//**************************************/
 typedef struct{
     uint8_t S_MSB;
     uint8_t S_LSB;
@@ -10,20 +19,36 @@ typedef struct{
     uint8_t E_LSB;
 }ILI9341_DrawBounds_t;
 
+/**************************************//**************************************//**************************************
+ * Enums
+ **************************************//**************************************//**************************************/
 typedef enum{
     DimensionsInvalid = 0,
     DimensionsValid = 1,
 }ImageDimensionValidity_t;
 
+/**************************************//**************************************//**************************************
+ * Private Function Declarations
+ **************************************//**************************************//**************************************/
 static void ILI9341_SetCoordinates(ILI9341_Handle_t *Dev, ILI9341_Coordinate_t StartCorner, ILI9341_Coordinate_t EndCorner);
 static ImageDimensionValidity_t ValidateCoordinates(ILI9341_Handle_t *Dev, ILI9341_Coordinate_t StartCorner, ILI9341_Coordinate_t EndCorner);
 
+/**************************************//**************************************//**************************************
+ * Public Function Definitions
+ **************************************//**************************************//**************************************/
 /******************************************************************
- *@brief: Initializes the LCD Hardware and prepares it to receive image data
- * See https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf for details regarding commands and data
- * Credit to ST Micro ILI9341.c Driver for initilization sequence
+
  ******************************************************************/
 
+/**************************************//**************************************
+ *@brief: Initializes the LCD Hardware and prepares it to receive image data
+ * See https://cdn-shop.adafruit.com/datasheets/ILI9341.pdf for details regarding commands and data
+ * Credit to ST Micro ILI9341.c Driver for initialization sequence
+ *@Params: Desired user settings, Device handle to initializes, Low level IO Driver
+ *@Return: None
+ *@Precondition: None
+ *@Postcondition: Device handle will be initialized
+ **************************************//**************************************/
 void ILI9341_Init(ILI9341_Init_Struct_t Settings, ILI9341_Handle_t *Dev, ILI9341_IO_Drv_t IO_Driver){
 	Dev->Orientation = Settings.Orientation;
 	Dev->ScreenHeight = Settings.ScreenHeight;
@@ -168,12 +193,26 @@ void ILI9341_Init(ILI9341_Init_Struct_t Settings, ILI9341_Handle_t *Dev, ILI9341
     Dev->IO_Drv.write(ILI9341_MADCTL, &Settings.Orientation,1);
 }
 
+/**************************************//**************************************
+ *@Brief: Deinitializes a ILI9431 Device handle
+ *@Params: pointer to Device handle to deinitialize
+ *@Return: None
+ *@Precondition: Device handle should be initialized
+ *@Postcondition: ILI9431 will be reset to default settings and LL hardware deinitialized
+ **************************************//**************************************/
 void ILI9341_DeInit(ILI9341_Handle_t *Dev){
 	uint8_t dummy;
 	Dev->IO_Drv.write(ILI9341_SWRESET, &dummy,0);
 	Dev->IO_Drv.deinit();
 }
 
+/**************************************//**************************************
+ *@Brief: Resets ILI9341 to default settings
+ *@Params: Device handle to reset
+ *@Return: None
+ *@Precondition: Device handle should be initialized
+ *@Postcondition: ILI9431 will be reset to default (factory) settings
+ **************************************//**************************************/
 void ILI9341_Reset(ILI9341_Handle_t *Dev){
 	uint8_t dummy;
 	Dev->IO_Drv.write(ILI9341_SWRESET, &dummy,0);
@@ -225,11 +264,26 @@ static void ILI9341_SetScreenOrientation(ILI9341_Handle_t *Dev, ILI9341_ScreenOr
     }
 }
 */
+
+/**************************************//**************************************
+ *@Brief: Draws a pixel to ILI9431 screen
+ *@Params: Device handle pointer, Color to write, Position of pixel
+ *@Return: None
+ *@Precondition: Device handle should be initialized
+ *@Postcondition: A Pixel wille be drawn on the screen at coordinate position
+ **************************************//**************************************/
 void ILI9341_DrawPixel(ILI9341_Handle_t *Dev, ILI9341_Color_t Color, ILI9341_Coordinate_t Position){
     ILI9341_SetCoordinates(Dev,Position,Position);
     Dev->IO_Drv.write(ILI9341_RAMWR,(uint8_t*)&Color,3);
 }
 
+/**************************************//**************************************
+ *@Brief: Fills screen of ILI9431 with a color
+ *@Params: Device handle pointer, color to draw
+ *@Return: None
+ *@Precondition: Device handle should be initialized
+ *@Postcondition: Screen will be filled with color
+ **************************************//**************************************/
 void ILI9341_FillSceen(ILI9341_Handle_t *Dev, ILI9341_Color_t Color){
     ILI9341_Coordinate_t CoordinateStart = {.X = 0, .Y = 0};
     ILI9341_Coordinate_t CoordinateEnd = {.X = Dev->ScreenWidth-1, .Y = Dev->ScreenHeight-1};
@@ -238,6 +292,13 @@ void ILI9341_FillSceen(ILI9341_Handle_t *Dev, ILI9341_Color_t Color){
     Dev->IO_Drv.write(ILI9341_NOCOMMAND, (uint8_t*)&Color, TOTAL_SCREEN_BYTES);
 }
 
+/**************************************//**************************************
+ *@Brief: Draws a Solid rectangle on the screen
+ *@Params: Device handle, width, height, middle coordinate, color
+ *@Return: None
+ *@Precondition: Device handle should be initialized
+ *@Postcondition: Rectangle will be drawn on the screen
+ **************************************//**************************************/
 void ILI9341_DrawRectangle(ILI9341_Handle_t *Dev, uint16_t width, uint16_t height, ILI9341_Coordinate_t Middle, ILI9341_Color_t Color){
 
     ILI9341_Coordinate_t CoordinateStart = {.X = Middle.X - width/2, .Y = Middle.Y - height/2};
@@ -270,6 +331,78 @@ void ILI9341_DrawRectangle(ILI9341_Handle_t *Dev, uint16_t width, uint16_t heigh
     Dev->IO_Drv.write(ILI9341_NOCOMMAND, (uint8_t*)&Color, TotalBytes);
 }
 
+
+/**************************************//**************************************
+ *@Brief: Draws an image to the screen
+ *@Params: Device handle, image data (8bit red, 8bit green, 8bit blue format)
+ *@Return: None
+ *@Precondition: Device handle should be initialized
+ *@Postcondition: Image will be written to the screen at Cursor position
+ **************************************//**************************************/
+void ILI9341_DisplayImage(ILI9341_Handle_t *Dev, const ILI9341_Image_t Image){
+    ILI9341_Coordinate_t CoordinateStart = {.X = Dev->Cursor.X, .Y = Dev->Cursor.Y};
+    ILI9341_Coordinate_t CoordinateEnd = {.X = CoordinateStart.X + Image.Width - 1, .Y = CoordinateStart.Y + Image.Height - 1};
+    ILI9341_SetCoordinates(Dev,CoordinateStart,CoordinateEnd);
+    //Dev->IO_Drv.write(ILI9341_RAMWR,(uint8_t*)&dummy,0);
+    Dev->IO_Drv.write(ILI9341_RAMWR, (uint8_t*)Image.ImageData, Image.ImageLength);
+}
+
+
+/**************************************//**************************************
+ *@Brief: Prepares an image to be opened and displayed on the screen
+ *@Params: pointer to bitmap data to be opened, Image pointer that will contain image
+ *@Return: None
+ *@Precondition: Device handle should be initialized
+ *@Postcondition: Image pointer will point to bitmap file data
+ **************************************//**************************************/
+void ILI9341_ImageOpen(const uint8_t *BitmapFile, ILI9341_Image_t *Image){
+  Image->ImageLength = CAST_AND_DEREFERENCE_32bitPtr(BitmapFile[0x02]);
+  Image->Width = CAST_AND_DEREFERENCE_32bitPtr(BitmapFile[0x12]);
+  Image->Height = CAST_AND_DEREFERENCE_32bitPtr(BitmapFile[0x16]);
+  Image->ImageData = (&BitmapFile[0x36]);
+}
+
+/**************************************//**************************************
+ *@Brief: Draws a line to the screen
+ *@Params: Device handle, Line color, start coordinate, end coordinate
+ *@Return: None
+ *@Precondition: Device handle should be initialized
+ *@Postcondition: Line will be drawn on the screen
+ **************************************//**************************************/
+void ILI9341_DrawLine(ILI9341_Handle_t *Dev, ILI9341_Color_t Color, ILI9341_Coordinate_t Start, ILI9341_Coordinate_t End){
+    ILI9341_Coordinate_t Iter = {Start.X, Start.Y};
+    do{
+    ILI9341_DrawPixel(Dev, Color, Iter);
+    Iter.X++;
+    Iter.Y = Start.Y + (End.Y - Start.Y)*Iter.X / (End.X - Start.X);
+    }while(Iter.X <= End.X);
+}
+
+/**************************************//**************************************
+ *@Brief: Draws a vertical line on the screen
+ *@Params: Device handle pointer, Color, Start X position, End Y position
+ *@Return: None
+ *@Precondition: Device handle should be initialized
+ *@Postcondition: Screen will have a vertical line on it of color
+ **************************************//**************************************/
+void ILI9341_DrawVLine(ILI9341_Handle_t *Dev, ILI9341_Color_t Color, int16_t StartX, int16_t EndY){
+    ILI9341_Coordinate_t Iter = {StartX, 0};
+    do{
+    ILI9341_DrawPixel(Dev, Color, Iter);
+    Iter.Y++;
+    }while(Iter.Y <= EndY);
+}
+
+/**************************************//**************************************//**************************************
+ * Private Function Definitions
+ **************************************//**************************************//**************************************/
+/**************************************//**************************************
+ *@Brief: Changes draw area
+ *@Params: Device handle, Top Left Corner, Bottom Right Corner
+ *@Return: None
+ *@Precondition: Device handle should be initialized
+ *@Postcondition: ILI9431 Device will be prepared to draw at a particular location
+ **************************************//**************************************/
 static void ILI9341_SetCoordinates(ILI9341_Handle_t *Dev, ILI9341_Coordinate_t StartCorner, ILI9341_Coordinate_t EndCorner){
     ILI9341_DrawBounds_t Coordinate = {.S_MSB = StartCorner.X >> 8, .S_LSB = StartCorner.X, .E_MSB = EndCorner.X >> 8, .E_LSB = EndCorner.X};
     Dev->IO_Drv.write(ILI9341_CASET,(uint8_t*)&Coordinate,4);
@@ -280,6 +413,13 @@ static void ILI9341_SetCoordinates(ILI9341_Handle_t *Dev, ILI9341_Coordinate_t S
     Dev->IO_Drv.write(ILI9341_PASET,(uint8_t*)&Coordinate,4);
 }
 
+/**************************************//**************************************
+ *@Brief: Validates if coordinates passed to function are valid (in screen area)
+ *@Params: Device handle, Top Left corner, Bottom Right Corner
+ *@Return: DimensionsInvalid if they dont fall in the screen area, DimensionsValid if they do.
+ *@Precondition: None
+ *@Postcondition: None
+ **************************************//**************************************/
 static ImageDimensionValidity_t ValidateCoordinates(ILI9341_Handle_t *Dev, ILI9341_Coordinate_t StartCorner, ILI9341_Coordinate_t EndCorner){
     //Entire Image off screen
     if(EndCorner.X < 0 || EndCorner.Y < 0){
@@ -298,44 +438,9 @@ static ImageDimensionValidity_t ValidateCoordinates(ILI9341_Handle_t *Dev, ILI93
     return DimensionsValid;
 }
 
-void ILI9341_DisplayImage(ILI9341_Handle_t *Dev, const ILI9341_Image_t Image){
-    ILI9341_Coordinate_t CoordinateStart = {.X = Dev->Cursor.X, .Y = Dev->Cursor.Y};
-    ILI9341_Coordinate_t CoordinateEnd = {.X = CoordinateStart.X + Image.Width - 1, .Y = CoordinateStart.Y + Image.Height - 1};
-    ILI9341_SetCoordinates(Dev,CoordinateStart,CoordinateEnd);
-    //Dev->IO_Drv.write(ILI9341_RAMWR,(uint8_t*)&dummy,0);
-    Dev->IO_Drv.write(ILI9341_RAMWR, (uint8_t*)Image.ImageData, Image.ImageLength);
-}
-
-
-
-void ILI9341_ImageOpen(const uint8_t *BitmapFile, ILI9341_Image_t *Image){
-  Image->ImageLength = CAST_AND_DEREFERENCE_32bitPtr(BitmapFile[0x02]);
-  Image->Width = CAST_AND_DEREFERENCE_32bitPtr(BitmapFile[0x12]);
-  Image->Height = CAST_AND_DEREFERENCE_32bitPtr(BitmapFile[0x16]);
-  Image->ImageData = (&BitmapFile[0x36]);
-}
-
-void ILI9341_DrawLine(ILI9341_Handle_t *Dev, ILI9341_Color_t Color, ILI9341_Coordinate_t Start, ILI9341_Coordinate_t End){
-    ILI9341_Coordinate_t Iter = {Start.X, Start.Y};
-    do{
-    ILI9341_DrawPixel(Dev, Color, Iter);
-    Iter.X++;
-    Iter.Y = Start.Y + (End.Y - Start.Y)*Iter.X / (End.X - Start.X);
-    }while(Iter.X <= End.X);
-}
-
-void ILI9341_DrawVLine(ILI9341_Handle_t *Dev, ILI9341_Color_t Color, int16_t StartX, int16_t EndY){
-    ILI9341_Coordinate_t Iter = {StartX, 0};
-    do{
-    ILI9341_DrawPixel(Dev, Color, Iter);
-    Iter.Y++;
-    }while(Iter.Y <= EndY);
-}
-
+/*
 #define PixelNumberToHeightPosition(x) ((x) / font.Width)
 #define PixelNumberToWidthPosition(x)  ((x) % font.Width)
-
-/*
 void ILI9341_PrintText(uint8_t *text, sFONT font, ILI9341_Color_t Color){
     uint32_t BytesToParse = (font.Height / 8) * font.Height;
     uint8_t Bitmap = 0x00;

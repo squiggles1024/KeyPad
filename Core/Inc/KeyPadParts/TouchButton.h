@@ -7,10 +7,16 @@
 
 #ifndef INC_KEYPADPARTS_TOUCHBUTTON_H_
 #define INC_KEYPADPARTS_TOUCHBUTTON_H_
+/**************************************//**************************************//**************************************
+ * Includes
+ **************************************//**************************************//**************************************/
 #include "KeyFunctions.h"
 #include "TouchButton_Hardware.h"
 #include <stdint.h>
 
+/**************************************//**************************************//**************************************
+ * Defines
+ **************************************//**************************************//**************************************/
 #define TOUCH_BUTTON_HALFWIDTH (31) //62 x 62 Pixels
 #define TOUCH_BUTTONS_PER_ROW (4)
 #define TOUCH_BUTTON_ROW_PITCH (80)
@@ -18,11 +24,17 @@
 #define TOUCH_BUTTON1_X_CENTER (40)
 #define TOUCH_BUTTON1_Y_CENTER (60)
 
+/**************************************//**************************************//**************************************
+ * Enums
+ **************************************//**************************************//**************************************/
 typedef enum{
     TouchButtonChanged,
 	TouchButtonUnchanged
 }TouchButton_Status_t;
 
+/**************************************//**************************************//**************************************
+ * Structs
+ **************************************//**************************************//**************************************/
 typedef struct{
 	TouchButtonCoordinate_t TopLeftBound;
 	TouchButtonCoordinate_t BottomRightBound;
@@ -37,6 +49,9 @@ typedef struct{
     TouchButton_IO_Drv_t IO_Driver;
 }TouchButton_Handle_t;
 
+/**************************************//**************************************//**************************************
+ * Public Functions
+ **************************************//**************************************//**************************************/
 void TouchButtonInit(TouchButton_Init_Struct_t Settings, TouchButton_Handle_t *Dev, TouchButton_IO_Drv_t IO_Driver);
 TouchButton_Status_t TouchButtonRead(TouchButton_Handle_t *Dev);
 void TouchButtonSetFunction(TouchButton_Handle_t* Dev, KeyFunction_t NewFunction);
