@@ -488,7 +488,7 @@ KeyFunction_t JoystickFunctionsDefault[8] = {
         //Right
         {.KeyScanCode = KEY_NONE,
         .ModifierKey = KEY_MOD_NOMOD,
-        .MouseClick = MOUSE_CLICK_5,
+        .MouseClick = MOUSE_CLICK_4,
         .MouseWheel = MOUSE_WHEEL_NO_MOVE},
 
         //DownRight
@@ -512,7 +512,7 @@ KeyFunction_t JoystickFunctionsDefault[8] = {
         //Left
         {.KeyScanCode = KEY_NONE,
         .ModifierKey = KEY_MOD_NOMOD,
-        .MouseClick = MOUSE_CLICK_4,
+        .MouseClick = MOUSE_CLICK_5,
         .MouseWheel = MOUSE_WHEEL_NO_MOVE},
 
         //UpLeft
