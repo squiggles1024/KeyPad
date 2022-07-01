@@ -62,18 +62,18 @@
   * @{
   */
 
-#define USBD_VID     1155
+#define USBD_VID     0x6666
 #define USBD_LANGID_STRING     1033
-#define USBD_MANUFACTURER_STRING     "STMicroelectronics"
-#define USBD_PID_FS     22352
-#define USBD_PRODUCT_STRING_FS     "STM32 Custom Human interface"
-#define USBD_CONFIGURATION_STRING_FS     "Custom HID Config"
-#define USBD_INTERFACE_STRING_FS     "Custom HID Interface"
+#define USBD_MANUFACTURER_STRING     "Evan Lemson"
+#define USBD_PID_FS     0x6666
+#define USBD_PRODUCT_STRING_FS     "Evan Lemson: Custom Gaming KeyPad"
+#define USBD_CONFIGURATION_STRING_FS     "Evan's Standard HID Config"
+#define USBD_INTERFACE_STRING_FS     "Evan's Custom HID KeyPad Interface"
 
 #define USB_SIZ_BOS_DESC            0x0C
 
 /* USER CODE BEGIN PRIVATE_DEFINES */
-
+#define USBD_BCD_USB 0x0200
 /* USER CODE END PRIVATE_DEFINES */
 
 /**
@@ -148,36 +148,25 @@ USBD_DescriptorsTypeDef FS_Desc =
 #endif /* (USBD_LPM_ENABLED == 1) */
 };
 
-#if defined ( __ICCARM__ ) /* IAR Compiler */
-  #pragma data_alignment=4
-#endif /* defined ( __ICCARM__ ) */
-/** USB standard device descriptor. */
-__ALIGN_BEGIN uint8_t USBD_FS_DeviceDesc[USB_LEN_DEV_DESC] __ALIGN_END =
-{
-  0x12,                       /*bLength */
-  USB_DESC_TYPE_DEVICE,       /*bDescriptorType*/
-#if (USBD_LPM_ENABLED == 1)
-  0x01,                       /*bcdUSB */ /* changed to USB version 2.01
-                                             in order to support LPM L1 suspend
-                                             resume test of USBCV3.0*/
-#else
-  0x00,                       /*bcdUSB */
-#endif /* (USBD_LPM_ENABLED == 1) */
-  0x02,
-  0x00,                       /*bDeviceClass*/
-  0x00,                       /*bDeviceSubClass*/
-  0x00,                       /*bDeviceProtocol*/
-  USB_MAX_EP0_SIZE,           /*bMaxPacketSize*/
-  LOBYTE(USBD_VID),           /*idVendor*/
-  HIBYTE(USBD_VID),           /*idVendor*/
-  LOBYTE(USBD_PID_FS),        /*idProduct*/
-  HIBYTE(USBD_PID_FS),        /*idProduct*/
-  0x00,                       /*bcdDevice rel. 2.00*/
-  0x02,
-  USBD_IDX_MFC_STR,           /*Index of manufacturer  string*/
-  USBD_IDX_PRODUCT_STR,       /*Index of product string*/
-  USBD_IDX_SERIAL_STR,        /*Index of serial number string*/
-  USBD_MAX_NUM_CONFIGURATION  /*bNumConfigurations*/
+__ALIGN_BEGIN uint8_t KeyPad_DeviceDesc[USB_LEN_DEV_DESC] __ALIGN_END = {
+	 USB_LEN_DEV_DESC,     //bLength (18 bytes)
+	 USB_DESC_TYPE_DEVICE, //bDescriptor Type == Device Descriptor
+	 LOBYTE(USBD_BCD_USB), //bcdUSB (USB Standard)
+	 HIBYTE(USBD_BCD_USB),
+     0x00,                 //bDeviceClass (each interface specifies its device class)
+	 0x00,                 //bDeviceSubClass (assigned by USB IF)
+	 0x00,                 //bDeviceProtocol (assigned by USB IF)
+	 USB_MAX_EP0_SIZE,     //bMaxPacketSize 8,16,32,64 are valid
+	 LOBYTE(USBD_VID),     //idVendor*/
+	 HIBYTE(USBD_VID),     //idVendor*/
+	 LOBYTE(USBD_PID_FS),  //idProduct*/
+	 HIBYTE(USBD_PID_FS),  //idProduct*/
+	 LOBYTE(USBD_BCD_USB), //Device Release Number
+     HIBYTE(USBD_BCD_USB),
+	 USBD_IDX_MFC_STR,           /*Index of manufacturer  string*/
+	 USBD_IDX_PRODUCT_STR,       /*Index of product string*/
+	 USBD_IDX_SERIAL_STR,        /*Index of serial number string*/
+     USBD_MAX_NUM_CONFIGURATION  /*bNumConfigurations*/
 };
 
 /* USB_DeviceDescriptor */
@@ -258,8 +247,8 @@ __ALIGN_BEGIN uint8_t USBD_StringSerial[USB_SIZ_STRING_SERIAL] __ALIGN_END = {
 uint8_t * USBD_FS_DeviceDescriptor(USBD_SpeedTypeDef speed, uint16_t *length)
 {
   UNUSED(speed);
-  *length = sizeof(USBD_FS_DeviceDesc);
-  return USBD_FS_DeviceDesc;
+  *length = sizeof(KeyPad_DeviceDesc);
+  return KeyPad_DeviceDesc;
 }
 
 /**

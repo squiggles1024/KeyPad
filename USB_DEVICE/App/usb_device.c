@@ -25,7 +25,6 @@
 #include "usbd_desc.h"
 #include "usbd_customhid.h"
 #include "usbd_custom_hid_if.h"
-
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
@@ -86,7 +85,7 @@ void MX_USB_DEVICE_Init(void)
   }
 
   /* USER CODE BEGIN USB_DEVICE_Init_PostTreatment */
-
+  //NVIC_SetPriority(OTG_FS_IRQn,1);
   /* USER CODE END USB_DEVICE_Init_PostTreatment */
 }
 

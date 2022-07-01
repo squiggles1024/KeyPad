@@ -35,7 +35,7 @@
 #include "stm32f4xx_hal.h"
 
 /* USER CODE BEGIN INCLUDE */
-
+#include "KeyPad.h"
 /* USER CODE END INCLUDE */
 
 /** @addtogroup USBD_OTG_DRIVER
