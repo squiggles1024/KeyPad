@@ -1,5 +1,5 @@
-../Core/Src/IC_Drivers/FT6206_Hardware.c:14:13:FT6206_IO_Init	8	static
-../Core/Src/IC_Drivers/FT6206_Hardware.c:20:13:FT6206_IO_DeInit	8	static
-../Core/Src/IC_Drivers/FT6206_Hardware.c:25:24:FT6206_IO_Write	32	static
-../Core/Src/IC_Drivers/FT6206_Hardware.c:32:24:FT6206_IO_Read	24	static
-../Core/Src/IC_Drivers/FT6206_Hardware.c:39:16:FT6206_IO_ioctl	16	static
+../Core/Src/IC_Drivers/FT6206_Hardware.c:30:13:FT6206_IO_Init	8	static
+../Core/Src/IC_Drivers/FT6206_Hardware.c:43:13:FT6206_IO_DeInit	8	static
+../Core/Src/IC_Drivers/FT6206_Hardware.c:55:24:FT6206_IO_Write	32	static
+../Core/Src/IC_Drivers/FT6206_Hardware.c:69:24:FT6206_IO_Read	24	static
+../Core/Src/IC_Drivers/FT6206_Hardware.c:83:16:FT6206_IO_ioctl	16	static

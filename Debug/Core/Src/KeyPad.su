@@ -1,6 +1,10 @@
-../Core/Src/KeyPad.c:18:6:KeyPadInit	16	static
-../Core/Src/KeyPad.c:33:6:UpdateKeyPadTxBuffers	24	static
-../Core/Src/KeyPad.c:383:13:KeypadInitButtons	48	static
-../Core/Src/KeyPad.c:392:13:KeypadInitJoystick	104	static
-../Core/Src/KeyPad.c:408:13:KeypadInitLEDs	72	static
-../Core/Src/KeyPad.c:433:13:KeypadInitTouchButtons	64	static
+../Core/Src/KeyPad.c:20:6:KeyPadInit	16	static
+../Core/Src/KeyPad.c:36:6:UpdateKeyPadTxBuffers	24	static
+../Core/Src/KeyPad.c:397:13:KeypadInitButtons	48	static
+../Core/Src/KeyPad.c:406:13:KeypadInitJoystick	104	static
+../Core/Src/KeyPad.c:422:13:KeypadInitLEDs	72	static
+../Core/Src/KeyPad.c:447:13:KeypadInitTouchButtons	64	static
+../Core/Src/KeyPad.c:459:6:KeyPadSendData	16	static
+../Core/Src/KeyPad.c:477:6:AssignNewButtonFunction	16	static
+../Core/Src/KeyPad.c:486:6:AssignNewTouchButtonFunction	16	static
+../Core/Src/KeyPad.c:494:6:AssignNewJoystickFunction	16	static

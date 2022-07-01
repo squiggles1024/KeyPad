@@ -1,6 +1,6 @@
-../Core/Src/IC_Drivers/FT6206.c:48:6:FT6206_Init	24	static
-../Core/Src/IC_Drivers/FT6206.c:58:6:FT6206_DeInit	16	static
-../Core/Src/IC_Drivers/FT6206.c:67:6:FT6206_ReadScreen	16	static
-../Core/Src/IC_Drivers/FT6206.c:76:6:FT6206_Halt	16	static
-../Core/Src/IC_Drivers/FT6206.c:80:6:FT6206_ReadReg	24	static
-../Core/Src/IC_Drivers/FT6206.c:84:6:FT6206_WriteReg	24	static
+../Core/Src/IC_Drivers/FT6206.c:67:6:FT6206_Init	24	static
+../Core/Src/IC_Drivers/FT6206.c:84:6:FT6206_DeInit	16	static
+../Core/Src/IC_Drivers/FT6206.c:100:6:FT6206_ReadScreen	16	static
+../Core/Src/IC_Drivers/FT6206.c:115:6:FT6206_Halt	16	static
+../Core/Src/IC_Drivers/FT6206.c:126:6:FT6206_ReadReg	24	static
+../Core/Src/IC_Drivers/FT6206.c:137:6:FT6206_WriteReg	24	static
