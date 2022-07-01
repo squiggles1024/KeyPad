@@ -7,6 +7,8 @@
 
 #include "KeyPad.h"
 #include "KeyPadConfig.h"
+#include "usb_device.h"
+#include "usbd_customhid.h"
 
 KeyPadHandle_t KeyPad;
 
@@ -28,6 +30,7 @@ void KeyPadInit(){
 	  KeypadInitTouchButtons();
 	  KeypadInitButtons();
 	  KeypadInitJoystick();
+	  MX_USB_DEVICE_Init();
 }
 
 void UpdateKeyPadTxBuffers(){
@@ -49,6 +52,7 @@ void UpdateKeyPadTxBuffers(){
         if(KeyPad.Buttons[i].State == ButtonPressed){
             if(KeyPad.Buttons[i].KeyFunction.KeyScanCode != KEY_NONE){
                 KeyPad.KeyboardUSBBuffer.keycodes[PressedKeys] = KeyPad.Buttons[i].KeyFunction.KeyScanCode;
+                PressedKeys++;
             }
 
             if(KeyPad.Buttons[i].KeyFunction.ModifierKey != KEY_MOD_NOMOD){
@@ -62,7 +66,6 @@ void UpdateKeyPadTxBuffers(){
             if(KeyPad.Buttons[i].KeyFunction.MouseWheel != MOUSE_WHEEL_NO_MOVE){
                 WheelMovement += KeyPad.Buttons[i].KeyFunction.MouseWheel;
             }
-            PressedKeys++;
         }
 
         if(ButtonStatus == ButtonChanged){
@@ -84,6 +87,7 @@ void UpdateKeyPadTxBuffers(){
         if(KeyPad.TouchButton[i].State == TouchButtonPressed){
             if(KeyPad.TouchButton[i].KeyFunction.KeyScanCode != KEY_NONE){
                 KeyPad.KeyboardUSBBuffer.keycodes[PressedKeys] = KeyPad.TouchButton[i].KeyFunction.KeyScanCode;
+                PressedKeys++;
             }
 
             if(KeyPad.TouchButton[i].KeyFunction.ModifierKey != KEY_MOD_NOMOD){
@@ -97,7 +101,7 @@ void UpdateKeyPadTxBuffers(){
             if(KeyPad.TouchButton[i].KeyFunction.MouseWheel != MOUSE_WHEEL_NO_MOVE){
                 WheelMovement += KeyPad.TouchButton[i].KeyFunction.MouseWheel;
             }
-            PressedKeys++;
+
         }
 
         if(TouchButtonStatus == TouchButtonChanged){
@@ -120,6 +124,7 @@ void UpdateKeyPadTxBuffers(){
 			case(Joystick_Up):
                             if(KeyPad.Joystick.UpFunction.KeyScanCode != KEY_NONE){
                                 KeyPad.KeyboardUSBBuffer.keycodes[PressedKeys] = KeyPad.Joystick.UpFunction.KeyScanCode;
+                                PressedKeys++;
                             }
 
                             if(KeyPad.Joystick.UpFunction.ModifierKey != KEY_MOD_NOMOD){
@@ -133,7 +138,7 @@ void UpdateKeyPadTxBuffers(){
                             if(KeyPad.Joystick.UpFunction.MouseWheel != MOUSE_WHEEL_NO_MOVE){
                                 WheelMovement += KeyPad.Joystick.UpFunction.MouseWheel;
                             }
-                            PressedKeys++;
+
 
                             if(JoystickStatus == JoystickChanged){
                             	if(KeyPad.Joystick.UpFunction.KeyScanCode != KEY_NONE || KeyPad.Joystick.UpFunction.ModifierKey != KEY_MOD_NOMOD){
@@ -148,6 +153,7 @@ void UpdateKeyPadTxBuffers(){
 			case(Joystick_UpRight):
                             if(KeyPad.Joystick.UpRightFunction.KeyScanCode != KEY_NONE){
                                 KeyPad.KeyboardUSBBuffer.keycodes[PressedKeys] = KeyPad.Joystick.UpRightFunction.KeyScanCode;
+                                PressedKeys++;
                             }
 
                             if(KeyPad.Joystick.UpRightFunction.ModifierKey != KEY_MOD_NOMOD){
@@ -161,7 +167,7 @@ void UpdateKeyPadTxBuffers(){
                             if(KeyPad.Joystick.UpRightFunction.MouseWheel != MOUSE_WHEEL_NO_MOVE){
                                 WheelMovement += KeyPad.Joystick.UpRightFunction.MouseWheel;
                             }
-                            PressedKeys++;
+
 
                             if(JoystickStatus == JoystickChanged){
                             	if(KeyPad.Joystick.UpRightFunction.KeyScanCode != KEY_NONE || KeyPad.Joystick.UpRightFunction.ModifierKey != KEY_MOD_NOMOD){
@@ -176,6 +182,7 @@ void UpdateKeyPadTxBuffers(){
 			case(Joystick_Right):
                             if(KeyPad.Joystick.RightFunction.KeyScanCode != KEY_NONE){
                                 KeyPad.KeyboardUSBBuffer.keycodes[PressedKeys] = KeyPad.Joystick.RightFunction.KeyScanCode;
+                                PressedKeys++;
                             }
 
                             if(KeyPad.Joystick.RightFunction.ModifierKey != KEY_MOD_NOMOD){
@@ -189,7 +196,7 @@ void UpdateKeyPadTxBuffers(){
                             if(KeyPad.Joystick.RightFunction.MouseWheel != MOUSE_WHEEL_NO_MOVE){
                                 WheelMovement += KeyPad.Joystick.RightFunction.MouseWheel;
                             }
-                            PressedKeys++;
+
 
                             if(JoystickStatus == JoystickChanged){
                             	if(KeyPad.Joystick.RightFunction.KeyScanCode != KEY_NONE || KeyPad.Joystick.RightFunction.ModifierKey != KEY_MOD_NOMOD){
@@ -204,6 +211,7 @@ void UpdateKeyPadTxBuffers(){
 			case(Joystick_DownRight):
                             if(KeyPad.Joystick.DownRightFunction.KeyScanCode != KEY_NONE){
                                 KeyPad.KeyboardUSBBuffer.keycodes[PressedKeys] = KeyPad.Joystick.DownRightFunction.KeyScanCode;
+                                PressedKeys++;
                             }
 
                             if(KeyPad.Joystick.DownRightFunction.ModifierKey != KEY_MOD_NOMOD){
@@ -217,7 +225,7 @@ void UpdateKeyPadTxBuffers(){
                             if(KeyPad.Joystick.DownRightFunction.MouseWheel != MOUSE_WHEEL_NO_MOVE){
                                 WheelMovement += KeyPad.Joystick.DownRightFunction.MouseWheel;
                             }
-                            PressedKeys++;
+
 
                             if(JoystickStatus == JoystickChanged){
                             	if(KeyPad.Joystick.DownRightFunction.KeyScanCode != KEY_NONE || KeyPad.Joystick.DownRightFunction.ModifierKey != KEY_MOD_NOMOD){
@@ -232,6 +240,7 @@ void UpdateKeyPadTxBuffers(){
 			case(Joystick_Down):
                             if(KeyPad.Joystick.DownFunction.KeyScanCode != KEY_NONE){
                                 KeyPad.KeyboardUSBBuffer.keycodes[PressedKeys] = KeyPad.Joystick.DownFunction.KeyScanCode;
+                                PressedKeys++;
                             }
 
                             if(KeyPad.Joystick.DownFunction.ModifierKey != KEY_MOD_NOMOD){
@@ -245,7 +254,7 @@ void UpdateKeyPadTxBuffers(){
                             if(KeyPad.Joystick.DownFunction.MouseWheel != MOUSE_WHEEL_NO_MOVE){
                                 WheelMovement += KeyPad.Joystick.DownFunction.MouseWheel;
                             }
-                            PressedKeys++;
+
 
                             if(JoystickStatus == JoystickChanged){
                             	if(KeyPad.Joystick.DownFunction.KeyScanCode != KEY_NONE || KeyPad.Joystick.DownFunction.ModifierKey != KEY_MOD_NOMOD){
@@ -260,6 +269,7 @@ void UpdateKeyPadTxBuffers(){
 			case(Joystick_DownLeft):
                             if(KeyPad.Joystick.DownLeftFunction.KeyScanCode != KEY_NONE){
                                 KeyPad.KeyboardUSBBuffer.keycodes[PressedKeys] = KeyPad.Joystick.DownLeftFunction.KeyScanCode;
+                                PressedKeys++;
                             }
 
                             if(KeyPad.Joystick.DownLeftFunction.ModifierKey != KEY_MOD_NOMOD){
@@ -273,7 +283,7 @@ void UpdateKeyPadTxBuffers(){
                             if(KeyPad.Joystick.DownLeftFunction.MouseWheel != MOUSE_WHEEL_NO_MOVE){
                                 WheelMovement += KeyPad.Joystick.DownLeftFunction.MouseWheel;
                             }
-                            PressedKeys++;
+
 
                             if(JoystickStatus == JoystickChanged){
                             	if(KeyPad.Joystick.DownLeftFunction.KeyScanCode != KEY_NONE || KeyPad.Joystick.DownLeftFunction.ModifierKey != KEY_MOD_NOMOD){
@@ -288,6 +298,7 @@ void UpdateKeyPadTxBuffers(){
 			case(Joystick_Left):
                             if(KeyPad.Joystick.LeftFunction.KeyScanCode != KEY_NONE){
                                 KeyPad.KeyboardUSBBuffer.keycodes[PressedKeys] = KeyPad.Joystick.LeftFunction.KeyScanCode;
+                                PressedKeys++;
                             }
 
                             if(KeyPad.Joystick.LeftFunction.ModifierKey != KEY_MOD_NOMOD){
@@ -301,7 +312,7 @@ void UpdateKeyPadTxBuffers(){
                             if(KeyPad.Joystick.LeftFunction.MouseWheel != MOUSE_WHEEL_NO_MOVE){
                                 WheelMovement += KeyPad.Joystick.LeftFunction.MouseWheel;
                             }
-                            PressedKeys++;
+
 
                             if(JoystickStatus == JoystickChanged){
                             	if(KeyPad.Joystick.LeftFunction.KeyScanCode != KEY_NONE || KeyPad.Joystick.LeftFunction.ModifierKey != KEY_MOD_NOMOD){
@@ -316,6 +327,7 @@ void UpdateKeyPadTxBuffers(){
 			case(Joystick_UpLeft):
                             if(KeyPad.Joystick.UpLeftFunction.KeyScanCode != KEY_NONE){
                                 KeyPad.KeyboardUSBBuffer.keycodes[PressedKeys] = KeyPad.Joystick.UpLeftFunction.KeyScanCode;
+                                PressedKeys++;
                             }
 
                             if(KeyPad.Joystick.UpLeftFunction.ModifierKey != KEY_MOD_NOMOD){
@@ -329,7 +341,7 @@ void UpdateKeyPadTxBuffers(){
                             if(KeyPad.Joystick.UpLeftFunction.MouseWheel != MOUSE_WHEEL_NO_MOVE){
                                 WheelMovement += KeyPad.Joystick.UpLeftFunction.MouseWheel;
                             }
-                            PressedKeys++;
+
 
                             if(JoystickStatus == JoystickChanged){
                             	if(KeyPad.Joystick.UpLeftFunction.KeyScanCode != KEY_NONE || KeyPad.Joystick.UpLeftFunction.ModifierKey != KEY_MOD_NOMOD){
@@ -357,9 +369,11 @@ void UpdateKeyPadTxBuffers(){
          KeyPad.KeyboardUSBBuffer.keycodes[i] = KEY_NONE;
     }
 
-    if(KeyPad.MouseUSBBuffer.wheel_movement != WheelMovement){
+    if(KeyPad.MouseUSBBuffer.wheel_movement != WheelMovement || WheelMovement != 0){
     	MouseStatus = MouseDataAvailable;
     	KeyPad.MouseUSBBuffer.wheel_movement = WheelMovement;
+    } else {
+
     }
 
     if(KeyPad.KeyboardUSBBuffer.modifiers != KeyBoardModKeys){
@@ -442,4 +456,76 @@ static void KeypadInitTouchButtons(){
 
 	}
 }
+void KeyPadSendData(){
+	uint8_t i = 0;
+	if(hUsbDeviceFS.dev_state == USBD_STATE_CONFIGURED){
+		i++;
+	}
+	 if(KeyPad.KeyboardFlag == KeyboardDataAvailable){
+		 USBD_LL_Resume(&hUsbDeviceFS);
+         USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, (uint8_t*)&KeyPad.KeyboardUSBBuffer, sizeof(KeyPad_KeyboardUSBBuffer_t), KEYBOARD_HID_EPIN_ADDR);
+         KeyPad.KeyboardFlag = NoKeypadChange;
+	 }
+
+	 if(KeyPad.MouseFlag == MouseDataAvailable){
+		  USBD_LL_Resume(&hUsbDeviceFS);
+		  USBD_CUSTOM_HID_SendReport(&hUsbDeviceFS, (uint8_t*)&KeyPad.MouseUSBBuffer, sizeof(KeyPad_MouseUSBBuffer_t), MOUSE_HID_EPIN_ADDR);
+		  KeyPad.MouseFlag = NoKeypadChange;
+	 }
+}
+
+void AssignNewButtonFunction(uint8_t ButtonIndex, KeyFunction_t NewFunction){
+	if(ButtonIndex >= NUMBER_OF_BUTTONS){
+		return;
+	} else {
+		KeyPad.Buttons[ButtonIndex].KeyFunction = NewFunction;
+	}
+
+}
+
+void AssignNewTouchButtonFunction(uint8_t TouchButtonIndex, KeyFunction_t NewFunction){
+	if(TouchButtonIndex >= NUMBER_OF_TOUCH_BUTTONS){
+		return;
+	} else {
+        KeyPad.TouchButton[TouchButtonIndex].KeyFunction = NewFunction;
+	}
+}
+
+void AssignNewJoystickFunction(JoystickState_t Direction, KeyFunction_t NewFunction){
+	if(Direction > Joystick_DownRight && Direction <= JoystickNeutral){
+		return;
+	}
+
+	switch(Direction){
+	case(Joystick_Up):
+			KeyPad.Joystick.UpFunction = NewFunction;
+			break;
+	case(Joystick_UpRight):
+		    KeyPad.Joystick.UpRightFunction = NewFunction;
+			break;
+	case(Joystick_Right):
+		    KeyPad.Joystick.RightFunction = NewFunction;
+			break;
+	case(Joystick_DownRight):
+		    KeyPad.Joystick.DownRightFunction = NewFunction;
+			break;
+	case(Joystick_Down):
+    	    KeyPad.Joystick.DownFunction = NewFunction;
+			break;
+	case(Joystick_DownLeft):
+    	    KeyPad.Joystick.DownLeftFunction = NewFunction;
+			break;
+	case(Joystick_Left):
+    	    KeyPad.Joystick.LeftFunction = NewFunction;
+			break;
+	case(Joystick_UpLeft):
+    	    KeyPad.Joystick.UpLeftFunction = NewFunction;
+			break;
+	default:
+			break;
+	}
+}
+
+
+
 

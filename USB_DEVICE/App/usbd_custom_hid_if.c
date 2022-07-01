@@ -22,7 +22,7 @@
 #include "usbd_custom_hid_if.h"
 
 /* USER CODE BEGIN INCLUDE */
-
+#include "KeyPad.h"
 /* USER CODE END INCLUDE */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -178,6 +178,20 @@ static int8_t CUSTOM_HID_OutEvent_FS(uint8_t event_idx, uint8_t state)
   /* USER CODE BEGIN 6 */
   UNUSED(event_idx);
   UNUSED(state);
+  KeyPadDataFrame_t *ReceivedData = (KeyPadDataFrame_t*)&hUsbDeviceFS.pData;
+  switch(ReceivedData->KeyType){
+  case(ButtonType):
+		  AssignNewButtonFunction(ReceivedData->KeyAddress, ReceivedData->NewFunction);
+		  break;
+  case(TouchButtonType):
+		  AssignNewTouchButtonFunction(ReceivedData->KeyAddress, ReceivedData->NewFunction);
+		  break;
+  case(JoystickType):
+		  AssignNewJoystickFunction(ReceivedData->KeyAddress, ReceivedData->NewFunction);
+		  break;
+  default:
+	      break;
+  }
 
   /* Start next USB packet transfer once data processing is completed */
   if (USBD_CUSTOM_HID_ReceivePacket(&hUsbDeviceFS) != (uint8_t)USBD_OK)
