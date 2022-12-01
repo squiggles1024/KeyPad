@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name JS5208)(type Legacy)(uri C:/Users/evanl/Downloads/KeyPad_Project/ECAD/JS5208/JS5208.lib)(options "")(descr ""))
+  (lib (name B4B-PH-SM4-TB)(type Legacy)(uri C:/Users/evanl/Downloads/KeyPad_Project/ECAD/B4B-PH-SM4-TB/B4B-PH-SM4-TB.lib)(options "")(descr ""))
+)

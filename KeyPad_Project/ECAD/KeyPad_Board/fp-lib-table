@@ -1,0 +1,5 @@
+(fp_lib_table
+  (lib (name B4B-PH-SM4-TB)(type KiCad)(uri C:/Users/evanl/Downloads/KeyPad_Project/ECAD/B4B-PH-SM4-TB)(options "")(descr ""))
+  (lib (name JS5208)(type KiCad)(uri C:/Users/evanl/Downloads/KeyPad_Project/ECAD/JS5208)(options "")(descr ""))
+  (lib (name MX1A-11NN)(type KiCad)(uri C:/Users/evanl/Downloads/KeyPad_Project/ECAD/MX1A-11NN)(options "")(descr ""))
+)
