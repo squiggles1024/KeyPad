@@ -10265,7 +10265,7 @@ LOAD c:/st/stm32cubeide_1.4.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
  .debug_macro   0x000000000001fdb4       0x1c ./USB_DEVICE/App/usbd_desc.o
  .debug_macro   0x000000000001fdd0      0x512 ./USB_DEVICE/Target/usbd_conf.o
 
-.debug_line     0x0000000000000000    0x2c352
+.debug_line     0x0000000000000000    0x2c354
  .debug_line    0x0000000000000000      0x49a ./Core/Src/IC_Drivers/FT6206.o
  .debug_line    0x000000000000049a      0x850 ./Core/Src/IC_Drivers/FT6206_Hardware.o
  .debug_line    0x0000000000000cea      0x80b ./Core/Src/IC_Drivers/ILI9341.o
@@ -10279,47 +10279,47 @@ LOAD c:/st/stm32cubeide_1.4.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
  .debug_line    0x00000000000054f8      0x828 ./Core/Src/gpio.o
  .debug_line    0x0000000000005d20      0x935 ./Core/Src/i2c.o
  .debug_line    0x0000000000006655      0x9e1 ./Core/Src/log.o
- .debug_line    0x0000000000007036      0xb04 ./Core/Src/main.o
- .debug_line    0x0000000000007b3a      0x841 ./Core/Src/spi.o
- .debug_line    0x000000000000837b      0x78d ./Core/Src/stm32f4xx_hal_msp.o
- .debug_line    0x0000000000008b08      0x999 ./Core/Src/stm32f4xx_it.o
- .debug_line    0x00000000000094a1      0x7ef ./Core/Src/syscalls.o
- .debug_line    0x0000000000009c90      0x4e5 ./Core/Src/sysmem.o
- .debug_line    0x000000000000a175      0x80f ./Core/Src/system_stm32f4xx.o
- .debug_line    0x000000000000a984      0x958 ./Core/Src/tim.o
- .debug_line    0x000000000000b2dc      0x7f7 ./Core/Src/usart.o
- .debug_line    0x000000000000bad3      0x47d ./Core/Src/KeyPadParts/Button.o
- .debug_line    0x000000000000bf50      0x890 ./Core/Src/KeyPadParts/Button_Hardware.o
- .debug_line    0x000000000000c7e0      0x4cf ./Core/Src/KeyPadParts/Joystick.o
- .debug_line    0x000000000000ccaf      0x992 ./Core/Src/KeyPadParts/Joystick_Hardware.o
- .debug_line    0x000000000000d641      0x42d ./Core/Src/KeyPadParts/SerialLED.o
- .debug_line    0x000000000000da6e      0x8f2 ./Core/Src/KeyPadParts/SerialLED_Hardware.o
- .debug_line    0x000000000000e360      0x46b ./Core/Src/KeyPadParts/TouchButton.o
- .debug_line    0x000000000000e7cb      0x4af ./Core/Src/KeyPadParts/TouchButton_Hardware.o
- .debug_line    0x000000000000ec7a      0x38d ./Core/Src/art_assets/art.o
- .debug_line    0x000000000000f007       0x88 ./Core/Startup/startup_stm32f411ceux.o
- .debug_line    0x000000000000f08f      0xa75 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
- .debug_line    0x000000000000fb04     0x1225 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.o
- .debug_line    0x0000000000010d29      0xd24 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o
- .debug_line    0x0000000000011a4d      0xfd9 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.o
- .debug_line    0x0000000000012a26      0xbad ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o
- .debug_line    0x00000000000135d3     0x3a2a ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.o
- .debug_line    0x0000000000016ffd     0x1518 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd.o
- .debug_line    0x0000000000018515      0x858 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.o
- .debug_line    0x0000000000018d6d      0xdef ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o
- .debug_line    0x0000000000019b5c     0x1cff ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.o
- .debug_line    0x000000000001b85b     0x3543 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.o
- .debug_line    0x000000000001ed9e     0x1a0d ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.o
- .debug_line    0x00000000000207ab     0x2b1a ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.o
- .debug_line    0x00000000000232c5     0x1b32 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.o
- .debug_line    0x0000000000024df7      0xf50 ./Middlewares/ST/STM32_USB_Device_Library/Class/CustomHID/Src/usbd_customhid.o
- .debug_line    0x0000000000025d47     0x1144 ./Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.o
- .debug_line    0x0000000000026e8b     0x1315 ./Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.o
- .debug_line    0x00000000000281a0      0xc5c ./Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.o
- .debug_line    0x0000000000028dfc      0xc2a ./USB_DEVICE/App/usb_device.o
- .debug_line    0x0000000000029a26      0xc4a ./USB_DEVICE/App/usbd_custom_hid_if.o
- .debug_line    0x000000000002a670      0xce1 ./USB_DEVICE/App/usbd_desc.o
- .debug_line    0x000000000002b351     0x1001 ./USB_DEVICE/Target/usbd_conf.o
+ .debug_line    0x0000000000007036      0xaff ./Core/Src/main.o
+ .debug_line    0x0000000000007b35      0x841 ./Core/Src/spi.o
+ .debug_line    0x0000000000008376      0x78d ./Core/Src/stm32f4xx_hal_msp.o
+ .debug_line    0x0000000000008b03      0x999 ./Core/Src/stm32f4xx_it.o
+ .debug_line    0x000000000000949c      0x7ef ./Core/Src/syscalls.o
+ .debug_line    0x0000000000009c8b      0x4e5 ./Core/Src/sysmem.o
+ .debug_line    0x000000000000a170      0x80f ./Core/Src/system_stm32f4xx.o
+ .debug_line    0x000000000000a97f      0x958 ./Core/Src/tim.o
+ .debug_line    0x000000000000b2d7      0x7f7 ./Core/Src/usart.o
+ .debug_line    0x000000000000bace      0x47d ./Core/Src/KeyPadParts/Button.o
+ .debug_line    0x000000000000bf4b      0x890 ./Core/Src/KeyPadParts/Button_Hardware.o
+ .debug_line    0x000000000000c7db      0x4cf ./Core/Src/KeyPadParts/Joystick.o
+ .debug_line    0x000000000000ccaa      0x992 ./Core/Src/KeyPadParts/Joystick_Hardware.o
+ .debug_line    0x000000000000d63c      0x42f ./Core/Src/KeyPadParts/SerialLED.o
+ .debug_line    0x000000000000da6b      0x8f4 ./Core/Src/KeyPadParts/SerialLED_Hardware.o
+ .debug_line    0x000000000000e35f      0x46d ./Core/Src/KeyPadParts/TouchButton.o
+ .debug_line    0x000000000000e7cc      0x4b0 ./Core/Src/KeyPadParts/TouchButton_Hardware.o
+ .debug_line    0x000000000000ec7c      0x38d ./Core/Src/art_assets/art.o
+ .debug_line    0x000000000000f009       0x88 ./Core/Startup/startup_stm32f411ceux.o
+ .debug_line    0x000000000000f091      0xa75 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
+ .debug_line    0x000000000000fb06     0x1225 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.o
+ .debug_line    0x0000000000010d2b      0xd24 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o
+ .debug_line    0x0000000000011a4f      0xfd9 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.o
+ .debug_line    0x0000000000012a28      0xbad ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o
+ .debug_line    0x00000000000135d5     0x3a2a ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.o
+ .debug_line    0x0000000000016fff     0x1518 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd.o
+ .debug_line    0x0000000000018517      0x858 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.o
+ .debug_line    0x0000000000018d6f      0xdef ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o
+ .debug_line    0x0000000000019b5e     0x1cff ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.o
+ .debug_line    0x000000000001b85d     0x3543 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.o
+ .debug_line    0x000000000001eda0     0x1a0d ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.o
+ .debug_line    0x00000000000207ad     0x2b1a ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.o
+ .debug_line    0x00000000000232c7     0x1b32 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.o
+ .debug_line    0x0000000000024df9      0xf50 ./Middlewares/ST/STM32_USB_Device_Library/Class/CustomHID/Src/usbd_customhid.o
+ .debug_line    0x0000000000025d49     0x1144 ./Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_core.o
+ .debug_line    0x0000000000026e8d     0x1315 ./Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ctlreq.o
+ .debug_line    0x00000000000281a2      0xc5c ./Middlewares/ST/STM32_USB_Device_Library/Core/Src/usbd_ioreq.o
+ .debug_line    0x0000000000028dfe      0xc2a ./USB_DEVICE/App/usb_device.o
+ .debug_line    0x0000000000029a28      0xc4a ./USB_DEVICE/App/usbd_custom_hid_if.o
+ .debug_line    0x000000000002a672      0xce1 ./USB_DEVICE/App/usbd_desc.o
+ .debug_line    0x000000000002b353     0x1001 ./USB_DEVICE/Target/usbd_conf.o
 
 .debug_str      0x0000000000000000    0xa70c2
  .debug_str     0x0000000000000000     0x3d96 ./Core/Src/IC_Drivers/FT6206.o

@@ -4,9 +4,9 @@
 ../Core/Src/IC_Drivers/ILI9341.c:275:6:ILI9341_DrawPixel	24	static
 ../Core/Src/IC_Drivers/ILI9341.c:287:6:ILI9341_FillSceen	24	static
 ../Core/Src/IC_Drivers/ILI9341.c:302:6:ILI9341_DrawRectangle	40	static
-../Core/Src/IC_Drivers/ILI9341.c:336:6:ILI9341_DisplayImage	24	static
-../Core/Src/IC_Drivers/ILI9341.c:346:6:ILI9341_ImageOpen	16	static
-../Core/Src/IC_Drivers/ILI9341.c:353:6:ILI9341_DrawLine	32	static
-../Core/Src/IC_Drivers/ILI9341.c:362:6:ILI9341_DrawVLine	32	static
-../Core/Src/IC_Drivers/ILI9341.c:370:13:ILI9341_SetCoordinates	32	static
-../Core/Src/IC_Drivers/ILI9341.c:380:33:ValidateCoordinates	24	static
+../Core/Src/IC_Drivers/ILI9341.c:342:6:ILI9341_DisplayImage	24	static
+../Core/Src/IC_Drivers/ILI9341.c:358:6:ILI9341_ImageOpen	16	static
+../Core/Src/IC_Drivers/ILI9341.c:372:6:ILI9341_DrawLine	32	static
+../Core/Src/IC_Drivers/ILI9341.c:388:6:ILI9341_DrawVLine	32	static
+../Core/Src/IC_Drivers/ILI9341.c:406:13:ILI9341_SetCoordinates	32	static
+../Core/Src/IC_Drivers/ILI9341.c:423:33:ValidateCoordinates	24	static
