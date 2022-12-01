@@ -19,7 +19,7 @@ The Black pill board does not have enough GPIO pins to serve all 64 buttons, and
 ![Bonnet](images/ExpanderBonnet.PNG)
 
 The board design is electrically simple, but mechanically complex. It is effectively a motherboard that interfaces the LCD screen, expander bonnets, and joystick with the microcontroller, the the buttons with the expander bonnets. On the bottom of the board are 4 addressable LEDs (sometimes referred to as "neo pixels).
-![Board Design](images/BoardDesign.PNG)
+![Board Design](images/BoardDesign.png)
 
 
 Known Issue: The LEDs currently do not work. I'm confident that the firmware to make them work in theory is correct, but upon hooking up the PWM signal to a scope, the rise and fall time appear to be too long (The PWM signal looks sinusoidal). Best guess is the wires are too long and there's too much stray capacitance on the PCBA. 
