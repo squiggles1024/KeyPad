@@ -22,5 +22,5 @@ The board design is electrically simple, but mechanically complex. It is effecti
 ![Board Design](images/BoardDesign.png)
 
 
-Known Issue: The LEDs currently do not work. I'm confident that the firmware to make them work in theory is correct, but upon hooking up the PWM signal to a scope, the rise and fall time appear to be too long (The PWM signal looks sinusoidal). Best guess is the wires are too long and there's too much stray capacitance on the PCBA. 
+Known Issue: The LEDs currently do not work. I'm confident that the firmware to make them work in theory is correct, but upon hooking up the PWM signal to a scope, the rise and fall time appear to be too long (The PWM signal looks sinusoidal). Best guess is the wires are too long and there's too much stray capacitance on the PCBA. Also, the cabling ended up taking way more space than anticipated, thus I need to find something to do about the cables because it's currently a mess. 
 
