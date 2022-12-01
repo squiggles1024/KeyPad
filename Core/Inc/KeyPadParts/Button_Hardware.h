@@ -41,7 +41,7 @@ typedef struct{
  * Exported Variables
  **************************************//**************************************//**************************************/
 extern const Button_IO_Drv_t ButtonIO_Driver;
-extern MCP23017_Handle_t Expander[4];
+extern MCP23017_Handle_t Expander[NUMBER_OF_IO_EXPANDERS];
 
 /**************************************//**************************************//**************************************
  * Public Functions
